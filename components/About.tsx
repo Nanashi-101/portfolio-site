@@ -11,6 +11,7 @@ const About = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{delay: 0.175, duration: 0.3 }}
+        id='about'
         >
             <SectionHeading>about me</SectionHeading>
             <p className='mb-3'>After graduating from highschool back in {" "}

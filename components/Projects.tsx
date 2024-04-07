@@ -9,7 +9,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 
 const Projects = () => {
     return (
-        <div>
+        <div id='projects'>
             <SectionHeading>my projects</SectionHeading>
             <div className=''>
                 {
