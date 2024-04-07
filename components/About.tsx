@@ -1,10 +1,19 @@
+"use client";
+
+import { motion } from 'framer-motion'
 import React from 'react'
+import SectionHeading from './section-heading';
+
 
 const About = () => {
     return (
-        <section>
-            <h2>About Me</h2>
-            <p>After graduating from highschool back in {" "}
+        <motion.section className='mb-28 max-w-[50rem] text-center leading-8 sm:mb-40'
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{delay: 0.175, duration: 0.3 }}
+        >
+            <SectionHeading>about me</SectionHeading>
+            <p className='mb-3'>After graduating from highschool back in {" "}
                 <span className="font-medium">India</span>, I decided to pursue my dream of moving abroad. So, I enrolled in{" "} <span className="font-medium">Vistula University</span> in Poland and started learning{" "}
                 <span className="font-medium">full-stack web development</span>along with my college course.{" "}
                 <span className="italic">The thing I love about programming</span> is the
@@ -24,7 +33,7 @@ const About = () => {
                 <span className="italic">When I'm not coding</span>, I enjoy playing
                 video games, watching movies, and playing with my dog. I also enjoy
             </p>
-        </section>
+        </motion.section>
     )
 }
 

@@ -62,24 +62,24 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: "CorpComment",
+    title: "€rypto",
     description:
-      "I worked as a full-stack developer on this startup project for 2 years. Users can give public feedback to companies.",
-    tags: ["React", "Next.js", "MongoDB", "Tailwind", "Prisma"],
+      "I worked on this front-end project as my first react project. It's just a one page prototype for a crypto website.",
+    tags: ["React", "JavaScript", "Tailwind", "Framer"],
     imageUrl: krypto,
   },
   {
-    title: "rmtDev",
+    title: "NeXCap Studio",
     description:
-      "Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind", "Redux"],
+      "This is a front-end project that I made for one of friend, who wants to pursue a career in photography. It's a portfolio website for him to attract clients.",
+    tags: ["React", "TypeScript", "Next.js", "Tailwind"],
     imageUrl: nexcapstudio,
   },
   {
-    title: "Word Analytics",
+    title: "Image Gallery",
     description:
-      "A public web app for quick analytics on text. It shows word count, character count and social media post limits.",
-    tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
+      "This is very basic Image Gallery project that I made to learn how to use tailwind to make creative designs. I also used framer motion to add some animations.",
+    tags: ["React", "Tailwind", "Framer"],
     imageUrl: ImageGallery,
   },
 ] as const;
@@ -94,14 +94,8 @@ export const skillsData = [
   "Node.js",
   "Git",
   "Tailwind",
-  "Prisma",
   "MongoDB",
-  "Redux",
-  "GraphQL",
-  "Apollo",
   "Express",
-  "PostgreSQL",
   "Python",
-  "Django",
   "Framer Motion",
 ] as const;
