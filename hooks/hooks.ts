@@ -18,5 +18,5 @@ export function useActiveSectionView(sectionName: SectionContextType, threshold 
         }
     }, [inView, setActiveSection, timeLastClick, sectionName]);
 
-    return ref;
+    return {ref, inView};
 }

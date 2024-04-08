@@ -7,11 +7,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BsArrowRight, BsGithub, BsLinkedin } from 'react-icons/bs';
 import { HiDownload } from 'react-icons/hi';
+import { useActiveSection } from '@/context/active-section-context';
 
 const Intro = () => {
-    const ref = useActiveSectionView("Home");
+    const { setActiveSection, setTimeLastClick } = useActiveSection();
+    const { ref, inView } = useActiveSectionView("Home");
     return (
-        <section ref={ref} className='mb-28 max-w-[50rem] text-center sm:mb-0' id='home'>
+        <section ref={ref} className='mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[13.5rem]' id='home'>
             <div className='flex flex-col items-center justify-center '>
                 <div className="relative">
                     <motion.div
@@ -46,7 +48,10 @@ const Intro = () => {
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.3 }}>
-                <Link href="#contact" className='group bg-gray-800 text-white px-8 py-3 rounded-full flex justify-center items-center gap-2 hover:tracking-wider duration-300  shadow-xl outline-none hover:scale-105 hover:bg-gray-900 focus:scale-105 active:scale-100'>Contact me <BsArrowRight className='translate-y-[1.2px] group-hover:translate-x-[0.28rem] transition' /></Link>
+                <Link href="#contact" className='group bg-gray-800 text-white px-8 py-3 rounded-full flex justify-center items-center gap-2 hover:tracking-wider duration-300  shadow-xl outline-none hover:scale-105 hover:bg-gray-900 focus:scale-105 active:scale-100' onClick={() => {
+                    setActiveSection("Contact");
+                    setTimeLastClick(Date.now());
+                }}>Contact me <BsArrowRight className='translate-y-[1.2px] group-hover:translate-x-[0.28rem] transition' /></Link>
                 <a href="/My_Resume.pdf" className='flex bg-white text-black px-6 py-3 rounded-full gap-2 items-center justify-center  hover:tracking-wider duration-300 hover:scale-105 focus:scale-105 active:scale-100 cursor-pointer shadow-lg border border-black/10'
                     download={true}>Download CV <HiDownload />{" "}</a>
                 <div className="flex gap-4">

@@ -4,5 +4,5 @@
 
 html{
   scroll-behavior: smooth !important;
-  scroll-padding-top: 13.2rem;
+  --line-color: #e5e7eb;
 }

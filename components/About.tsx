@@ -6,9 +6,9 @@ import SectionHeading from './section-heading';
 
 
 const About = () => {
-    const ref = useActiveSectionView("About");
+    const {ref, inView} = useActiveSectionView("About");
     return (
-        <motion.section className='mb-28 mt-10 max-w-[50rem] text-center leading-8 sm:mb-40'
+        <motion.section className='mb-[9rem] mt-[2rem] max-w-[50rem] text-justify leading-8 px-4 sm:mb-28 sm:mt-10 scroll-mt-[6.5rem] sm:scroll-mt-[12.2rem]'
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{delay: 0.175, duration: 0.3 }}
@@ -34,7 +34,8 @@ const About = () => {
                 developer.</p>
             <p>
                 <span className="italic">When I'm not coding</span>, I enjoy playing
-                video games, watching movies, and playing with my dog. I also enjoy
+                video games, watching movies, and playing with my dog. I also enjoy reading books on <span className="font-medium italic">Sci-fi & Adventure</span>. Also, I am a huge fan of{" "}
+                <span className="font-medium underline">Music</span>.
             </p>
         </motion.section>
     )
