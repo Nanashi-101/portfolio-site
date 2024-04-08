@@ -6,6 +6,8 @@ import SectionHeading from './section-heading'
 import { projectsData } from '@/lib/data'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import Link from 'next/link';
+import { AiOutlineLink } from "react-icons/ai";
 
 const Projects = () => {
     return (
@@ -18,7 +20,7 @@ const Projects = () => {
                             (project, index) =>
                             (
                                 <React.Fragment key={index}>
-                                    <ProjectCard {...project} id={index} />
+                                    <ProjectCard {...project}/>
                                 </React.Fragment>
                             )
                         )
@@ -31,7 +33,7 @@ const Projects = () => {
 type ProjectCardProps = typeof projectsData[number];
 type ProjectCardIndex = number;
 
-const ProjectCard = ({ title, description, tags, imageUrl }: ProjectCardProps, id: ProjectCardIndex) => {
+const ProjectCard = ({ title, description, tags, imageUrl, projectUrl }: ProjectCardProps, id: ProjectCardIndex) => {
     const cardRef = useRef<HTMLDivElement>(null);
 
     const { scrollYProgress } = useScroll({
@@ -52,7 +54,7 @@ const ProjectCard = ({ title, description, tags, imageUrl }: ProjectCardProps, i
         >
             <section ref={cardRef} className='relative bg-gray-100 max-w-[42rem] overflow-hidden border border-black/5 rounded-lg shadow-lg sm:pr-8 sm:h-[20rem] hover:bg-gray-200 transition-all '>
                 <div className='flex flex-col pt-4 pb-6 px-5 sm:pl-10 sm:pr-2 sm:pt-10 h-full sm:max-w-[50%] group-even:sm:ml-[20rem]'>
-                    <h3 className='text-2xl font-semibold'>{title}</h3>
+                    <Link href={projectUrl} className='flex items-center gap-1 text-2xl font-semibold hover:text-blue-500 hover:underline transition-all ' target='_blank'>{title}<AiOutlineLink/></Link>
                     <p className='mt-2 leading-relaxed text-gray-700 w-full'>{description}</p>
                     <ul className='flex gap-3 flex-wrap items-center mt-4 sm:mt-auto'>
                         {

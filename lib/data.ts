@@ -67,6 +67,7 @@ export const projectsData = [
       "I worked on this front-end project as my first react project. It's just a one page prototype for a crypto website.",
     tags: ["React", "JavaScript", "Tailwind", "Framer"],
     imageUrl: krypto,
+    projectUrl: "https://responsive-site-inky.vercel.app",
   },
   {
     title: "NeXCap Studio",
@@ -74,6 +75,7 @@ export const projectsData = [
       "This is a front-end project that I made for one of friend, who wants to pursue a career in photography. It's a portfolio website for him to attract clients.",
     tags: ["React", "TypeScript", "Next.js", "Tailwind"],
     imageUrl: nexcapstudio,
+    projectUrl: "https://photography-site-gilt.vercel.app",
   },
   {
     title: "Image Gallery",
@@ -81,6 +83,7 @@ export const projectsData = [
       "This is very basic Image Gallery project that I made to learn how to use tailwind to make creative designs. I also used framer motion to add some animations.",
     tags: ["React", "Tailwind", "Framer"],
     imageUrl: ImageGallery,
+    projectUrl: "https://github.com/Nanashi-101/image_gallery.git",
   },
 ] as const;
 

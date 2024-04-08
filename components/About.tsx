@@ -7,7 +7,7 @@ import SectionHeading from './section-heading';
 
 const About = () => {
     return (
-        <motion.section className='mb-28 max-w-[50rem] text-center leading-8 sm:mb-40'
+        <motion.section className='mb-28 mt-10 max-w-[50rem] text-center leading-8 sm:mb-40'
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{delay: 0.175, duration: 0.3 }}
