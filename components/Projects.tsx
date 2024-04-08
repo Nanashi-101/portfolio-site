@@ -1,13 +1,14 @@
 "use client";
 //Try to not use it here because it's not necessary other than projectCard component. Maybe make a new file for it.
 
-import React, { useRef } from 'react'
-import SectionHeading from './section-heading'
-import { projectsData } from '@/lib/data'
-import Image from 'next/image'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useActiveSectionView } from '@/hooks/hooks';
+import { projectsData } from '@/lib/data';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
+import React, { useRef } from 'react';
 import { AiOutlineLink } from "react-icons/ai";
+import SectionHeading from './section-heading';
 
 const Projects = () => {
     return (
@@ -45,16 +46,19 @@ const ProjectCard = ({ title, description, tags, imageUrl, projectUrl }: Project
     const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1])
     const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1])
 
+    const ref = useActiveSectionView("Projects", 0.5);
+
     return (
         <motion.div style={{
             scale: scaleProgress,
             opacity: opacityProgress,
         }}
             className='group mb-5 sm:mb-8 last:mb-0'
+            ref={ref}
         >
-            <section ref={cardRef} className='relative bg-gray-100 max-w-[42rem] overflow-hidden border border-black/5 rounded-lg shadow-lg sm:pr-8 sm:h-[20rem] hover:bg-gray-200 transition-all '>
-                <div className='flex flex-col pt-4 pb-6 px-5 sm:pl-10 sm:pr-2 sm:pt-10 h-full sm:max-w-[50%] group-even:sm:ml-[20rem]'>
-                    <Link href={projectUrl} className='flex items-center gap-1 text-2xl font-semibold hover:text-blue-500 hover:underline transition-all ' target='_blank'>{title}<AiOutlineLink/></Link>
+            <section ref={cardRef} className='relative bg-gray-100 max-w-[42rem] overflow-hidden border border-black/5 rounded-lg shadow-lg sm:pr-8 sm:h-[20rem] hover:bg-gray-200 hover:scale-110 transition-all group-even:sm:pl-4'>
+                <div className='flex flex-col pt-4 pb-6 px-5 sm:pl-10 sm:pr-2 sm:pt-10 h-full sm:max-w-[50%] group-even:sm:ml-[18rem]'>
+                    <Link href={projectUrl} className='flex items-center gap-1 text-2xl font-semibold hover:text-blue-500 hover:underline hover:tracking-wide transition-all ' target='_blank'>{title}<AiOutlineLink/></Link>
                     <p className='mt-2 leading-relaxed text-gray-700 w-full'>{description}</p>
                     <ul className='flex gap-3 flex-wrap items-center mt-4 sm:mt-auto'>
                         {
@@ -62,7 +66,7 @@ const ProjectCard = ({ title, description, tags, imageUrl, projectUrl }: Project
                         }
                     </ul>
                 </div>
-                <Image src={imageUrl} alt={title} quality={95} className='sm:absolute top-12 -right-40 w-[29.45rem] h-[17rem] rounded-t-xl shadow-2xl object-fill 
+                <Image src={imageUrl} alt={title} quality={95} className='sm:absolute top-12 -right-40 sm:w-[28.45rem] w-full h-[17rem] rounded-t-xl shadow-slate-950 shadow-2xl object-fill 
                 group-even:sm:right-[initial] group-even:sm:-left-40
                 group-hover:sm:scale-105 
                 group-hover:sm:-translate-x-3 group-hover:sm:translate-y-3 group-hover:sm:-rotate-3 
