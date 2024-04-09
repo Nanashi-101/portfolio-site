@@ -3,9 +3,9 @@ import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import ActiveSectionProvider from "@/context/active-section-context";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
-const raleway = Raleway({ subsets: ["latin"] });
 
 //Required color code:
 // bluish-hue: #6271f8
@@ -30,6 +30,7 @@ export default function RootLayout({
         <ActiveSectionProvider>
           <Header />
           {children}
+          <Toaster position="bottom-right"/>
         </ActiveSectionProvider>
       </body>
     </html >
