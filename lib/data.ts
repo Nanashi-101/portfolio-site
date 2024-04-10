@@ -5,6 +5,7 @@ import { LuGraduationCap } from "react-icons/lu";
 import krypto from "@/public/Krypto.png";
 import nexcapstudio from "@/public/nexcapstudio.png";
 import ImageGallery from "@/public/image gallery.png";
+import ThemeChangerBtn from "@/components/ThemeChangerBtn";
 
 export const links = [
   {

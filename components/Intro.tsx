@@ -36,7 +36,7 @@ const Intro = () => {
                         className='absolute -bottom-1 -left-[0.02rem]  text-3xl'>🚀</motion.span>
                 </div>
             </div>
-            <motion.h1 className='mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl'
+            <motion.h1 className='mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl dark:text-gray-200/90'
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
@@ -57,7 +57,7 @@ const Intro = () => {
                     setActiveSection("Contact");
                     setTimeLastClick(Date.now());
                 }}>Contact me <BsArrowRight className='translate-y-[1.2px] group-hover:translate-x-[0.28rem] transition' /></Link>
-                <a href="/My_Resume.pdf" className='flex bg-white text-black px-6 py-3 rounded-full gap-2 items-center justify-center  hover:tracking-wider duration-300 hover:scale-105 focus:scale-105 active:scale-100 cursor-pointer shadow-lg border border-black/10'
+                <a href="/My_Resume.pdf" className='flex bg-white dark:bg-white/10 dark:text-white/80 px-6 py-3 rounded-full gap-2 items-center justify-center  hover:tracking-wider duration-300 hover:scale-105 focus:scale-105 active:scale-100 cursor-pointer shadow-lg border border-black/10'
                     download={true} onClick={()=>{
                         toast.loading("Downloading Resume", {
                         });
@@ -66,8 +66,8 @@ const Intro = () => {
                         }, 3000);
                     }}>Download CV <HiDownload />{" "}</a>
                 <div className="flex gap-4">
-                    <a href="https://www.linkedin.com/in/soumyadip-sanyalxxiii/" className='flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10' target='_blank'><BsLinkedin size={20} /></a>
-                    <a href="https://github.com/Nanashi-101" className='flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10' target='_blank'><BsGithub size={20} /></a>
+                    <a href="https://www.linkedin.com/in/soumyadip-sanyalxxiii/" className='flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80' target='_blank'><BsLinkedin size={20} /></a>
+                    <a href="https://github.com/Nanashi-101" className='flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80' target='_blank'><BsGithub size={20} /></a>
                 </div>
             </motion.div>
         </section>

@@ -32,7 +32,7 @@ const Skills = () => {
       <SectionHeading>my skills</SectionHeading>
       <ul className='flex flex-wrap items-center justify-center gap-2 gap-y-2 text-lg'>
         {skillsData.map((skill, index) => (
-            <motion.li key={index} className='mb-3 text-gray-600 bg-gray-200 font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-gray-300 hover:text-gray-800 transition-colors duration-300 ease-in-out'
+            <motion.li key={index} className='mb-3 text-gray-600 bg-gray-200 font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-gray-300 hover:text-gray-800 transition-colors duration-300 ease-in-out dark:bg-white/10 dark:hover:bg-white/20 dark:text-white/70 dark:hover:text-white/80'
             variants={fadeAnimation}
             initial="initial"
             whileInView="animate"

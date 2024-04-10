@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom"
 function SubmitButton() {
     const { pending } = useFormStatus();
     return (
-        <button className='group bg-gray-700 text-white text-lg font-medium flex items-center justify-center gap-2 w-[180px] outline-none px-3 py-3 rounded-full text-center hover:tracking-wider hover:bg-gray-900 hover:scale-110 focus:scale-110 active:scale-105 transition-all disabled:bg-opacity-65 disabled:scale-100' type='submit'
+        <button className='group bg-gray-800 text-white text-lg font-medium flex items-center justify-center gap-2 w-[200px] outline-none px-3 py-3 rounded-full text-center hover:tracking-wider hover:bg-gray-900 hover:scale-110 focus:scale-110 active:scale-105 transition-all disabled:bg-opacity-65 disabled:scale-100' type='submit'
         disabled={pending}>
             {
                 pending
