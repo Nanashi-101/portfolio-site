@@ -1,11 +1,11 @@
 import React from "react";
-import { CgWorkAlt } from "react-icons/cg";
+import { MdOutlineWork } from "react-icons/md";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
+import { FaUserGraduate } from "react-icons/fa";
 import krypto from "@/public/Krypto.png";
 import nexcapstudio from "@/public/nexcapstudio.png";
 import ImageGallery from "@/public/image gallery.png";
-import ThemeChangerBtn from "@/components/ThemeChangerBtn";
 
 export const links = [
   {
@@ -40,7 +40,7 @@ export const experiencesData = [
     location: "West Bengal, India",
     description:
       "I graduated from highschool. I immediately decided to start working to become a front-end developer.",
-    icon: React.createElement(LuGraduationCap),
+    icon: React.createElement(FaUserGraduate),
     date: "2023",
   },
   {
@@ -48,7 +48,7 @@ export const experiencesData = [
     location: "Warsaw, Poland",
     description:
       "I worked as a front-end developer for 1 month for some of my friends who were starting a new project. I used HTML, CSS and JavaScript(React) to build the websites for them.",
-    icon: React.createElement(CgWorkAlt),
+    icon: React.createElement(MdOutlineWork),
     date: "2023 - 2024",
   },
   {

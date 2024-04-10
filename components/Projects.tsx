@@ -66,7 +66,7 @@ const ProjectCard = ({ title, description, tags, imageUrl, projectUrl }: Project
                         }
                     </ul>
                 </div>
-                <Image src={imageUrl} alt={title} quality={95} className='sm:absolute top-12 -right-40 sm:w-[28.45rem] w-full h-[17rem] rounded-t-xl shadow-slate-950 shadow-2xl object-fill 
+                <Image src={imageUrl} alt={title} quality={95} className='sm:absolute top-[5.7rem] sm:top-12 -right-40 sm:w-[28.45rem] mx-auto sm:mx-0 w-[97.56%] h-[15rem] sm:h-[17rem] rounded-t-xl shadow-slate-950 shadow-2xl object-fill 
                 group-even:sm:right-[initial] group-even:sm:-left-40
                 group-hover:sm:scale-105 
                 group-hover:sm:-translate-x-3 group-hover:sm:translate-y-3 group-hover:sm:-rotate-3 

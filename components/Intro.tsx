@@ -1,15 +1,15 @@
 "use client";
 
+import { useActiveSection } from '@/context/active-section-context';
 import { useActiveSectionView } from '@/hooks/hooks';
 import myimg from "@/public/me.jpg";
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 import { BsArrowRight, BsGithub, BsLinkedin } from 'react-icons/bs';
 import { HiDownload } from 'react-icons/hi';
-import { useActiveSection } from '@/context/active-section-context';
-import toast from 'react-hot-toast';
-import { error } from 'console';
+import { IoLogoWhatsapp } from "react-icons/io";
 
 const Intro = () => {
     const { setActiveSection, setTimeLastClick } = useActiveSection();
@@ -66,8 +66,9 @@ const Intro = () => {
                         }, 3000);
                     }}>Download CV <HiDownload />{" "}</a>
                 <div className="flex gap-4">
-                    <a href="https://www.linkedin.com/in/soumyadip-sanyalxxiii/" className='flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80' target='_blank'><BsLinkedin size={20} /></a>
-                    <a href="https://github.com/Nanashi-101" className='flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80' target='_blank'><BsGithub size={20} /></a>
+                    <a href="https://www.linkedin.com/in/soumyadip-sanyalxxiii/" className='flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80' target='_main'><BsLinkedin size={20} /></a>
+                    <a href="https://github.com/Nanashi-101" className='flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80' target='_main'><BsGithub size={20} /></a>
+                    <a href="https://wa.me/48739685183" className='flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80' target='_main'><IoLogoWhatsapp size={20} /></a>
                 </div>
             </motion.div>
         </section>
