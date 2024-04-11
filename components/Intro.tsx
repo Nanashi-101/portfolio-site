@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 import { BsArrowRight, BsGithub, BsLinkedin } from 'react-icons/bs';
 import { HiDownload } from 'react-icons/hi';
 import { IoLogoWhatsapp } from "react-icons/io";
+import { ReactTyped } from 'react-typed';
 
 const Intro = () => {
     const { setActiveSection, setTimeLastClick } = useActiveSection();
@@ -32,23 +33,28 @@ const Intro = () => {
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ type: "spring", stiffness: 125, delay: 0.1, duration: 0.7 }}
-                        whileHover={{ scale: 1.2, rotate: 360}}
+                        whileHover={{ scale: 1.2, rotate: 360 }}
                         className='absolute -bottom-1 -left-[0.02rem]  text-3xl'>🚀</motion.span>
                 </div>
             </div>
-            <motion.h1 className='mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl dark:text-gray-200/90'
+            <motion.h1 className='mb-8 mt-2 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl dark:text-gray-200/90'
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
             >
-                <span className="font-bold ">Hello, I'm <span className="italic">Soumyadip</span>. </span>
-                I am a{" "}
-                <span className="font-bold">Software Developer.</span> I have{" "}
-                <span className="font-bold">1 year</span> experience as a{" "}
-                <span className='font-bold italic'>front-end developer. </span>I work in{" "}
-                <span className="font-bold underline">{`React{NextJs}, tailwindcss, vercel`}</span>. I enjoy building{" "}
-                <span className="font-bold italic">sites & Web-apps</span>
+                <span className="">Hello, I'm <span className="font-bold">Soumyadip</span>. </span>{" "}
+                I am a{" "} <span className="font-bold italic">{" "}Software Developer. </span>{" "}
             </motion.h1>
+            <motion.p className='mb-[4rem] text-3xl sm:text-5xl my-4' initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}><span className=''>I work in</span>{" "}
+                <ReactTyped
+                    className='font-medium font-extrabold'
+                    strings={["React{NextJS}", "Tailwindcss", "NodeJs", "Git", "MongoDB", "ExpressJs", "TypeScript", "JavaScript", "HTML", "CSS", "SASS"]}
+                    typeSpeed={100}
+                    backSpeed={120}
+                    loop
+                /></motion.p>
             <motion.div className='flex flex-col sm:flex-row gap-4 items-center justify-center text-lg font-medium'
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -58,7 +64,7 @@ const Intro = () => {
                     setTimeLastClick(Date.now());
                 }}>Contact me <BsArrowRight className='translate-y-[1.2px] group-hover:translate-x-[0.28rem] transition' /></Link>
                 <a href="/My_Resume.pdf" className='flex bg-white dark:bg-white/10 dark:text-white/80 px-6 py-3 rounded-full gap-2 items-center justify-center  hover:tracking-wider duration-300 hover:scale-105 focus:scale-105 active:scale-100 cursor-pointer shadow-lg border border-black/10'
-                    download={true} onClick={()=>{
+                    download={true} onClick={() => {
                         toast.loading("Downloading Resume", {
                         });
                         setInterval(() => {
