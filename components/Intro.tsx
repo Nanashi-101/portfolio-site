@@ -49,7 +49,7 @@ const Intro = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}><span className=''>I work in</span>{" "}
                 <ReactTyped
-                    className='font-medium font-extrabold'
+                    className='font-extrabold'
                     strings={["React{NextJS}", "Tailwindcss", "NodeJs", "Git", "MongoDB", "ExpressJs", "TypeScript", "JavaScript", "HTML", "CSS", "SASS"]}
                     typeSpeed={100}
                     backSpeed={120}
