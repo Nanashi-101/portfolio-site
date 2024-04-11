@@ -17,7 +17,7 @@ const Intro = () => {
 
 
     return (
-        <section ref={ref} className='mb-28 pt-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[13.5rem]' id='home'>
+        <section ref={ref} className='mb-28 pt-[5rem] max-w-[50rem] text-center sm:mb-0 scroll-mt-[13.5rem]' id='home'>
             <div className='flex flex-col items-center justify-center '>
                 <div className="relative">
                     <motion.div

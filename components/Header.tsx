@@ -100,7 +100,7 @@ const Header = () => {
             <div className={mobileMenuScroll ? 'fixed w-full  sm:hidden cursor-pointer h-[4.5rem]' : 'fixed w-full sm:hidden cursor-pointer py-3 px-5 bg-gray-200/80 dark:bg-black/70 backdrop-blur-sm h-[4.5rem]'}>
                 <AiOutlineMenu size={30} onClick={handleMenu} id='menu-btn' className='text-gray-700 dark:text-white/80 fixed top-5 right-5' />
             </div>
-            <nav className={!mobileMenu ? "fixed top-0 left-0 bottom-0 right-0 flex sm:hidden h-screen w-full py-2 bg-gray-200/90 dark:bg-black/80 dark:text-white/70 backdrop-blur-[0.7rem] ease-in duration-300" : "fixed top-0 left-[-100%] flex sm:hidden h-screen w-full z-[999] py-2 bg-gray-200/90 backdrop-blur-2 ease-in duration-300"} id='mobile-nav'>
+            <nav className={!mobileMenu ? "fixed top-0 left-0 bottom-0 right-0 flex sm:hidden h-screen w-full py-2 bg-gray-200/90 dark:bg-black/80 dark:text-white/70 backdrop-blur-[0.7rem] ease-in duration-300" : "fixed top-0 left-[-100%] flex sm:hidden h-screen w-full z-[999] py-2 bg-gray-200/90 dark:bg-black/80 dark:text-white/70 backdrop-blur-2 ease-in duration-300"} id='mobile-nav'>
                 <ul className='relative flex flex-col  w-full items-center justify-center font-medium text-xl uppercase sm:text-[0.9rem] sm:w-[initial] gap-5 sm:gap-5'>
                     <AiOutlineClose size={30} className='absolute top-5 right-5 cursor-pointer' onClick={handleMenu} />
                     {
