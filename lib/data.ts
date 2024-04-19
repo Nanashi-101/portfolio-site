@@ -6,6 +6,7 @@ import { FaUserGraduate } from "react-icons/fa";
 import krypto from "@/public/Krypto.png";
 import nexcapstudio from "@/public/nexcapstudio.png";
 import ImageGallery from "@/public/image gallery.png";
+import WillBeThere from "@/public/willbethere.png";
 
 export const links = [
   {
@@ -85,6 +86,14 @@ export const projectsData = [
     tags: ["React", "Tailwind", "Framer"],
     imageUrl: ImageGallery,
     projectUrl: "https://github.com/Nanashi-101/image_gallery.git",
+  },
+  {
+    title: "Will be there",
+    description:
+      "This is a hackathon project that I made with my friends. It's a RSVP website that helps people to host and join events. I worked as the lead frontend dev in this project. ",
+    tags: ["React", "Tailwind", "Framer"],
+    imageUrl: WillBeThere,
+    projectUrl: "https://github.com/Nanashi-101/AritDeveloperHackathon-group19-starred",
   },
 ] as const;
 
