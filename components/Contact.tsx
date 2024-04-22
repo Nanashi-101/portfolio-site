@@ -18,7 +18,7 @@ const Contact = () => {
   const [message, setMessage] = useState<string>('');
   return (
     <div className="relative w-[min(100%, 38rem)]">
-      <div className="bg-[#ff6d79d7] absolute top-[8rem] left-1/2 -translate-x-1/2 h-[15.25rem] -z-10  max-w-[38rem] rounded-full blur-[30rem] sm:w-[68.75rem]"/>
+      {/* <div className="bg-[#ff6d79d7] absolute top-[8rem] left-1/2 -translate-x-1/2 h-[15.25rem] -z-10  max-w-[38rem] rounded-full blur-[30rem] sm:w-[68.75rem]"/> */}
       <motion.section className='mb-28 mt-32 sm:mb-28 sm:mt-32 scroll-mt-[7rem] sm:scroll-mt-[10rem]' id="contact"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
