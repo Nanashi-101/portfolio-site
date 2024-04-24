@@ -12,13 +12,13 @@ export default function Home() {
     <main className="flex flex-col items-center justify-center px-4">
       <Intro />
       <SectionDivider />
-      <About/>
+      <Skills />
       <SectionDivider />
       <Projects />
       <SectionDivider />
-      <Skills />
-      <SectionDivider />
       <Experience/>
+      <SectionDivider />
+      <About/>
       <SectionDivider />
       <Contact />
       <Footer />
