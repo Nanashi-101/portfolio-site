@@ -19,7 +19,7 @@ const Experience = () => {
     const { theme } = useThemeContext();
     return (
 
-        <section className='scroll-mt-[7.5rem] sm:scroll-mt-[10.5rem]' ref={ref} id="experience">
+        <section className='max-w-[1240px] my-20 scroll-mt-[7.5rem] sm:scroll-mt-[10.5rem]' ref={ref} id="experience">
             <SectionHeading>my experience</SectionHeading>
             <VerticalTimeline lineColor="">
                 {

@@ -7,6 +7,7 @@ import krypto from "@/public/Krypto.png";
 import nexcapstudio from "@/public/nexcapstudio.png";
 import ImageGallery from "@/public/image gallery.png";
 import WillBeThere from "@/public/willbethere.png";
+import { FaLaptopCode } from "react-icons/fa6";
 
 export const links = [
   {
@@ -51,6 +52,14 @@ export const experiencesData = [
       "I worked as a front-end developer for 1 month for some of my friends who were starting a new project. I used HTML, CSS and JavaScript(React) to build the websites for them.",
     icon: React.createElement(MdOutlineWork),
     date: "2023 - 2024",
+  },
+  {
+    title: "Front-end Developer",
+    location: "Warsaw, Poland",
+    description:
+      "I joined a hackathon hosted by AritDeveloper, from Nigeria, where I worked as a Front-end developer. I used React, Tailwind and Framer Motion to build the projects and served as an acting QA, near the end of the contest for my team.",
+    icon: React.createElement(FaLaptopCode),
+    date: "03/2024 - 04/2024",
   },
   {
     title: "Full-Stack Developer",
