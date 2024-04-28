@@ -43,7 +43,7 @@ const Contact = () => {
           <textarea className='h-52 px-5 py-3 bg-gray-200 sm:bg-white/60 dark:bg-white/20 dark:placeholder:text-white/80 rounded-xl border border-black/10 text-gray-900 dark:text-gray-200  text-lg font-medium placeholder:text-gray-500 focus:placeholder:text-gray-900 ' name="senderMsg" placeholder='Your message' value={message} maxLength={5000} onChange={message => setMessage(message.target.value)}></textarea>
           <div className='flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-4'>
             <SubmitButton />
-            <button className='bg-white border border-black/[0.05] text-lg font-medium flex items-center justify-center gap-2 w-[200px] outline-none px-3 py-3 rounded-full text-center hover:tracking-wider hover:scale-110 focus:scale-110 active:scale-105 transition-all dark:bg-gray-200 dark:hover:bg-gray-100 dark:text-black' onClick={() => {
+            <button className='bg-gray-100 border border-black/[0.05] text-lg font-medium flex items-center justify-center gap-2 w-[200px] outline-none px-3 py-3 rounded-full text-center hover:tracking-wider hover:scale-110 focus:scale-110 active:scale-105 transition-all dark:bg-gray-200 dark:hover:bg-gray-100 dark:text-black' onClick={() => {
               if (name.length === 0 && mail.length === 0 && message.length === 0) {
                 toast.error("Form is already empty!");
               }

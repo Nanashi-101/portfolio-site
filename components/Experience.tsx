@@ -9,7 +9,7 @@ import { useActiveSectionView } from '@/hooks/hooks';
 import { useThemeContext } from '@/context/theme-context';
 
 const Experience = () => {
-    const { ref, inView } = useActiveSectionView("Experience", 0.2);
+    const { ref, inView } = useActiveSectionView("Experience", 0.9);
     const [visible, setVisible] = React.useState(false);
     React.useEffect(() => {
         if (inView) {

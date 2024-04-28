@@ -6,12 +6,13 @@ import SectionDivider from "@/components/section-divider";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/footer";
+import ScrollDown from "@/components/ScrollDown";
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center px-4">
       <Intro />
-      <SectionDivider />
+      <ScrollDown />
       <Skills />
       <SectionDivider />
       <Projects />

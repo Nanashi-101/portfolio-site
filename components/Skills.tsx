@@ -24,7 +24,7 @@ const Skills = () => {
   return (
     <div className="relative max-w-[45rem]">
       {/* <div className="bg-[#717fffda] absolute top-[8rem] left-1/2 -translate-x-1/2 h-[15.25rem] -z-10  max-w-[45rem] rounded-full blur-[30rem] sm:w-[68.75rem]"/> */}
-      <section ref={ref} className='mt-[10rem] mb-28 w-full text-center sm:mb-40 sm:mt-28 scroll-mt-[15.5rem]' id='skills'>
+      <section ref={ref} className='mt-[10rem] mb-28 w-full text-center sm:my-40 scroll-mt-[15.5rem]' id='skills'>
         <SectionHeading>my skills</SectionHeading>
         <ul className='flex flex-wrap items-center justify-center gap-2 gap-y-2 text-[0.725rem] md:text-md sm:text-xl'>
           {skillsData.map((skill, index) => (
