@@ -18,7 +18,7 @@ const Intro = () => {
 
 
     return (
-        <section ref={ref} className='mb-28 pt-[5rem] max-w-[50rem] text-center sm:mb-0 scroll-mt-[13.5rem]' id='home'>
+        <section ref={ref} className='mb-28 pt-[1rem] max-w-[50rem] text-center sm:mb-0 scroll-mt-[13.5rem]' id='home'>
             <div className='flex flex-col items-center justify-center '>
                 <div className="relative">
                     <motion.div
@@ -47,7 +47,7 @@ const Intro = () => {
             </motion.h1>
             <motion.p className='mb-[4rem] text-3xl sm:text-5xl my-4' initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}><span className=''>I work in</span>{" "}
+                transition={{ duration: 0.3 }}><span className=''><span className='font-semibold'>I</span> work in</span>{" "}
                 <ReactTyped
                     className='font-extrabold'
                     strings={["React{NextJS}", "Tailwindcss", "NodeJs", "Git", "MongoDB", "ExpressJs", "TypeScript", "JavaScript", "HTML", "CSS", "SASS"]}
