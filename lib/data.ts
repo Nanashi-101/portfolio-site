@@ -82,11 +82,19 @@ export const projectsData = [
     projectUrl: "https://responsive-site-inky.vercel.app",
   },
   {
+    title: "Airbnb Clone",
+    description:
+      "This is a project where I tried to make a clone of the actual airbnb website. It uses modern technologies like Next.js, Tailwind, Supabase and Vercel.",
+    tags: ["NextJs", "Tailwind", "Supabase", "Verecel"],
+    imageUrl: AirbnbClone,
+    projectUrl: "https://airbnb-clone-zeta-indol.vercel.app",
+  },
+  {
     title: "NeXCap Studio",
     description:
       "This is a front-end project that I made for one of friend, who wants to pursue a career in photography. It's a portfolio website for him to attract clients.",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind"],
-    imageUrl: nexcapstudio,
+      tags: ["React", "TypeScript", "Next.js", "Tailwind"],
+      imageUrl: nexcapstudio,
     projectUrl: "https://photography-site-gilt.vercel.app",
   },
   {
@@ -104,14 +112,6 @@ export const projectsData = [
     tags: ["React", "Tailwind", "Framer"],
     imageUrl: WillBeThere,
     projectUrl: "https://github.com/Nanashi-101/AritDeveloperHackathon-group19-starred",
-  },
-  {
-    title: "Airbnb Clone",
-    description:
-      "This is a project where I tried to make a clone of the actual airbnb website. I used Next.js, Tailwind, and ShadCN UI for frontend, and services like Kinde, Supabase and Prisma for authentication and backend are used to build this project.",
-    tags: ["NextJs", "Tailwind", "Shadcn UI", "Kinde", "Supabase", "Prisma"],
-    imageUrl: AirbnbClone,
-    projectUrl: "https://airbnb-clone-zeta-indol.vercel.app",
   },
 ] as const;
 
