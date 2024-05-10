@@ -7,6 +7,7 @@ import krypto from "@/public/Krypto.png";
 import nexcapstudio from "@/public/nexcapstudio.png";
 import ImageGallery from "@/public/image gallery.png";
 import WillBeThere from "@/public/willbethere.png";
+import AirbnbClone from "@/public/airbnbclone.jpg";
 import { FaLaptopCode } from "react-icons/fa6";
 
 export const links = [
@@ -103,6 +104,14 @@ export const projectsData = [
     tags: ["React", "Tailwind", "Framer"],
     imageUrl: WillBeThere,
     projectUrl: "https://github.com/Nanashi-101/AritDeveloperHackathon-group19-starred",
+  },
+  {
+    title: "Airbnb Clone",
+    description:
+      "This is a project where I tried to make a clone of the actual airbnb website. I used Next.js, Tailwind, and ShadCN UI for frontend, and services like Kinde, Supabase and Prisma for authentication and backend are used to build this project.",
+    tags: ["NextJs", "Tailwind", "Shadcn UI", "Kinde", "Supabase", "Prisma"],
+    imageUrl: AirbnbClone,
+    projectUrl: "https://airbnb-clone-zeta-indol.vercel.app",
   },
 ] as const;
 

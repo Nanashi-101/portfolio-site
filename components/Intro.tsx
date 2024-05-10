@@ -45,7 +45,7 @@ const Intro = () => {
                 <span className="">Hello, I'm <span className="font-bold">Soumyadip</span>. </span>{" "}
                 I am a{" "} <span className="font-bold italic">{" "}Software Developer. </span>{" "}
             </motion.h1>
-            <motion.p className='mb-[4rem] text-3xl sm:text-5xl my-4' initial={{ opacity: 0, y: 100 }}
+            <motion.p className='mb-[4rem] text-2xl sm:text-5xl my-4' initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}><span className=''><span className='font-semibold'>I</span> work in</span>{" "}
                 <ReactTyped
