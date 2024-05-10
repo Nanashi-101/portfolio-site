@@ -5,7 +5,7 @@ import { sendEmail } from '@/actions/sendEmail';
 import { useActiveSectionView } from '@/hooks/hooks';
 import { MdOutlineDelete } from "react-icons/md";
 import { motion } from 'framer-motion';
-import SectionHeading from './section-heading';
+import {SectionHeading} from './section-heading';
 import SubmitButton from './submit-btn';
 import toast from 'react-hot-toast';
 import { BsRecycle } from 'react-icons/bs';

@@ -2,7 +2,7 @@
 
 
 import React from 'react'
-import SectionHeading from './section-heading'
+import {SectionHeading} from './section-heading'
 import { skillsData } from '@/lib/data'
 import { useActiveSectionView } from '@/hooks/hooks'
 import { animate, motion } from 'framer-motion'

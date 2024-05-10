@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link';
 
 const ScrollDown = () => {
-  return (
+  return (                                           
     <motion.div className='mb-10 sm:my-[5.4rem] h-16 flex items-center justify-center'
     initial={{ opacity: 0, y: 100 }}
     animate={{ opacity: 1, y: 0 }}

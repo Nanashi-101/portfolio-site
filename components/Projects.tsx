@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import { AiOutlineLink } from "react-icons/ai";
-import SectionHeading from './section-heading';
+import {SectionHeading} from './section-heading';
 
 const Projects = () => {
     return (
