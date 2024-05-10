@@ -74,20 +74,20 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: "€rypto",
-    description:
-      "I worked on this front-end project as my first react project. It's just a one page prototype for a crypto website.",
-    tags: ["React", "JavaScript", "Tailwind", "Framer"],
-    imageUrl: krypto,
-    projectUrl: "https://responsive-site-inky.vercel.app",
-  },
-  {
     title: "Airbnb Clone",
     description:
       "This is a project where I tried to make a clone of the actual airbnb website. It uses modern technologies like Next.js, Tailwind, Supabase and Vercel.",
     tags: ["NextJs", "Tailwind", "Supabase", "Verecel"],
     imageUrl: AirbnbClone,
     projectUrl: "https://airbnb-clone-zeta-indol.vercel.app",
+  },
+  {
+    title: "€rypto",
+    description:
+      "I worked on this front-end project as my first react project. It's just a one page prototype for a crypto website.",
+    tags: ["React", "JavaScript", "Tailwind", "Framer"],
+    imageUrl: krypto,
+    projectUrl: "https://responsive-site-inky.vercel.app",
   },
   {
     title: "NeXCap Studio",
