@@ -77,7 +77,7 @@ export const projectsData = [
     title: "Airbnb Clone",
     description:
       "This is a project where I tried to make a clone of the actual airbnb website. It uses modern technologies like Next.js, Tailwind, Supabase and Vercel.",
-    tags: ["NextJs", "Tailwind", "Supabase", "Verecel"],
+    tags: ["NextJs", "Tailwind", "Supabase", "Vercel"],
     imageUrl: AirbnbClone,
     projectUrl: "https://airbnb-clone-zeta-indol.vercel.app",
   },

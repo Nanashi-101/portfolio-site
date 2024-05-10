@@ -1,23 +1,25 @@
 {
-    "cSpell.words": [
-        "bootcamp",
-        "clsx",
-        "corpcomment",
-        "hackathon",
-        "krypto",
-        "maxlength",
-        "myimg",
-        "nexcapstudio",
-        "rmtdev",
-        "rypto",
-        "Sanyal",
-        "sanyalxxiii",
-        "Soumyadip",
-        "tailwindcss",
-        "techstack",
-        "upskilled",
-        "Vfen",
-        "willbethere",
-        "wordanalytics"
-    ]
+  "cSpell.words": [
+    "bootcamp",
+    "clsx",
+    "corpcomment",
+    "hackathon",
+    "krypto",
+    "maxlength",
+    "myimg",
+    "nexcapstudio",
+    "rmtdev",
+    "rypto",
+    "Sanyal",
+    "sanyalxxiii",
+    "Soumyadip",
+    "Supabase",
+    "tailwindcss",
+    "techstack",
+    "upskilled",
+    "Verecel",
+    "Vfen",
+    "willbethere",
+    "wordanalytics"
+  ]
 }
