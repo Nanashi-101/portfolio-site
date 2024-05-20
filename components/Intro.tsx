@@ -2,7 +2,7 @@
 
 import { useActiveSection } from '@/context/active-section-context';
 import { useActiveSectionView } from '@/hooks/hooks';
-import myimg from "@/public/me.jpg";
+import myimg from "@/public/Intro_me.png";
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,8 +26,8 @@ const Intro = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ type: "tween", duration: 0.2 }}
                     >
-                        <Image src={myimg} alt='Me' width={150} height={150}
-                            quality="95" priority={true} className='h-24 w-24 rounded-full border-[0.25rem] border-white/80 object-cover shadow-xl' />
+                        <Image src={myimg} alt='Me' width={155} height={155}
+                            quality="100" priority={true} className='h-28 w-28 rounded-full border-[0.14rem] border-white/70 object-cover shadow-xl' />
                     </motion.div>
                     <motion.span
                         initial={{ opacity: 0, scale: 0 }}

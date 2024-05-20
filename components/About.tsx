@@ -4,14 +4,11 @@ import { useActiveSectionView } from "@/hooks/hooks";
 import { motion } from "framer-motion";
 import { AboutHeading } from "./section-heading";
 import Image from "next/image";
-import myimg from "@/public/Me_croped.jpg";
-import { IoLogoWhatsapp } from "react-icons/io";
+import myimg from "@/public/Me_Prof.png";
 import {
   BsDiscord,
   BsFacebook,
-  BsGithub,
   BsInstagram,
-  BsLinkedin,
 } from "react-icons/bs";
 
 const About = () => {
@@ -29,7 +26,7 @@ const About = () => {
         <Image
           src={myimg}
           alt="my-pfp"
-          className="w-full lg:w-[90%] rounded-lg shadow-xl"
+          className="w-full lg:w-[87%] rounded-lg shadow-xl"
         />
       </div>
       <div className="w-full lg:w-[55%] flex flex-col justify-center">
