@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import { BsArrowBarUp, BsArrowUp } from "react-icons/bs";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 

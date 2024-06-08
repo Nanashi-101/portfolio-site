@@ -5,17 +5,17 @@ import { links } from '@/lib/data';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { ThemeChangerBtnMob } from './ThemeChangerBtn';
-import iconMe from '@/public/Sam.png';
+
 
 
 const Header = () => {
-    const [mobileMenu, setMobileMenu] = useState(true);
-    const [mobileMenuScroll, setMobileMenuScroll] = useState(true);
+    const [mobileMenu, setMobileMenu] = useState<boolean>(true);
+    const [mobileMenuScroll, setMobileMenuScroll] = useState<boolean>(true);
     const { activeSection, setActiveSection, setTimeLastClick } = useActiveSection();
-    const [pageScrolled, setPageScrolled] = useState(false);
+    const [pageScrolled, setPageScrolled] = useState<boolean>(false);
     if (typeof window !== 'undefined') {
         window.onscroll = () => {
             console.log(window.scrollY)
