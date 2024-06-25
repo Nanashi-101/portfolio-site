@@ -35,7 +35,7 @@ const Skills = () => {
         id="skills"
       >
         <SectionHeading>my skills</SectionHeading>
-        <motion.div className="w-full mx-auto grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-x-[0.369rem] gap-y-0 md:gap-6" variants={fadeAnimation} initial='initial' animate='animate'>
+        <motion.div className="w-full mx-auto grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-x-3 gap-y-0 md:gap-6" variants={fadeAnimation} initial='initial' animate='animate'>
           <SkillCard img={nextImg}>Next.Js</SkillCard>
           <SkillCard img={typeImg}>Typescript</SkillCard>
           <SkillCard img={mongoImg}>MongoDB</SkillCard>
