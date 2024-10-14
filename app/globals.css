@@ -12,3 +12,9 @@ html.dark{
   --line-color: rgba(255,255,255,0.15);
   --line-border-radius: 50px;
 }
+
+@layer components{
+  .btn-base{
+    @apply bg-gray-800 text-white px-8 py-3 rounded-full flex justify-center items-center gap-2 duration-300  shadow-xl outline-none hover:scale-110 hover:bg-gray-900 focus:scale-105 active:scale-100;
+  }
+}

@@ -7,6 +7,7 @@ import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/footer";
 import ScrollDown from "@/components/ScrollDown";
+import Blogs from "@/components/blog";
 
 export default function Home() {
   return (
@@ -16,6 +17,8 @@ export default function Home() {
       <Skills />
       <SectionDivider />
       <Projects />
+      <SectionDivider />
+      <Blogs />
       <SectionDivider />
       <Experience/>
       <SectionDivider />
