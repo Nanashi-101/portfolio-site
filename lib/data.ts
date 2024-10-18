@@ -73,14 +73,14 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
-  {
-    title: "Airbnb Clone",
-    description:
-      "This is a project where I tried to make a clone of the actual airbnb website. It uses modern technologies like Next.js, Tailwind, Supabase and Vercel.",
-    tags: ["NextJs", "Tailwind", "Supabase", "Vercel"],
-    imageUrl: AirbnbClone,
-    projectUrl: "https://airbnb-clone-self-ten.vercel.app/",
-  },
+  // {
+  //   title: "Airbnb Clone",
+  //   description:
+  //     "This is a project where I tried to make a clone of the actual airbnb website. It uses modern technologies like Next.js, Tailwind, Supabase and Vercel.",
+  //   tags: ["NextJs", "Tailwind", "Supabase", "Vercel"],
+  //   imageUrl: AirbnbClone,
+  //   projectUrl: "https://airbnb-clone-self-ten.vercel.app/",
+  // },
   {
     title: "€rypto",
     description:
