@@ -7,7 +7,7 @@ import krypto from "@/public/Krypto.png";
 import nexcapstudio from "@/public/nexcapstudio.png";
 import ImageGallery from "@/public/image gallery.png";
 import WillBeThere from "@/public/willbethere.png";
-import AirbnbClone from "@/public/airbnbclone.jpg";
+import ChromaUI from "@/public/ChromaUi.png"
 import { FaLaptopCode } from "react-icons/fa6";
 
 export const links = [
@@ -73,14 +73,14 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
-  // {
-  //   title: "Airbnb Clone",
-  //   description:
-  //     "This is a project where I tried to make a clone of the actual airbnb website. It uses modern technologies like Next.js, Tailwind, Supabase and Vercel.",
-  //   tags: ["NextJs", "Tailwind", "Supabase", "Vercel"],
-  //   imageUrl: AirbnbClone,
-  //   projectUrl: "https://airbnb-clone-self-ten.vercel.app/",
-  // },
+  {
+    title: "ChromaUI",
+    description:
+      "ChromaUI is a Digital marketplace built with React, Next.js, Tailwind CSS and Supabase. It's a full-stack project that I made to learn how to use Supabase as a backend service. It also uses Kinde for authentication of users",
+    tags: ["NextJs", "Tailwind", "Supabase", "Vercel"],
+    imageUrl: ChromaUI,
+    projectUrl: "https://chroma-ui-ecru.vercel.app",
+  },
   {
     title: "€rypto",
     description:
@@ -93,8 +93,8 @@ export const projectsData = [
     title: "NeXCap Studio",
     description:
       "This is a front-end project that I made for one of friend, who wants to pursue a career in photography. It's a portfolio website for him to attract clients.",
-      tags: ["React", "TypeScript", "Next.js", "Tailwind"],
-      imageUrl: nexcapstudio,
+    tags: ["React", "TypeScript", "Next.js", "Tailwind"],
+    imageUrl: nexcapstudio,
     projectUrl: "https://photography-site-gilt.vercel.app",
   },
   {
@@ -111,7 +111,8 @@ export const projectsData = [
       "This is a hackathon project that I made with my friends. It's a RSVP website that helps people to host and join events. I worked as the lead frontend dev in this project. ",
     tags: ["React", "Tailwind", "Framer"],
     imageUrl: WillBeThere,
-    projectUrl: "https://github.com/Nanashi-101/AritDeveloperHackathon-group19-starred",
+    projectUrl:
+      "https://github.com/Nanashi-101/AritDeveloperHackathon-group19-starred",
   },
 ] as const;
 
