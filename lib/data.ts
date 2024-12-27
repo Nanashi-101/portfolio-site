@@ -76,7 +76,7 @@ export const projectsData = [
   {
     title: "ChromaUI",
     description:
-      "ChromaUI is a Digital marketplace built with React, Next.js, Tailwind CSS and Supabase. It's a full-stack project that I made to learn how to use Supabase as a backend service. It also uses Kinde for authentication of users",
+      "ChromaUI is a Digital marketplace built with React, Next.js, Tailwind CSS and Supabase. It's a full-stack project to connect marketing with innovation",
     tags: ["NextJs", "Tailwind", "Supabase", "Vercel"],
     imageUrl: ChromaUI,
     projectUrl: "https://chroma-ui-ecru.vercel.app",
