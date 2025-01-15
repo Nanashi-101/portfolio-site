@@ -38,7 +38,7 @@ const About = () => {
             dream of moving abroad. So, I enrolled in{" "}
             <span className="font-medium">Vistula University</span> in Poland
             and started learning{" "}
-            <span className="font-medium">full-stack web development</span>along
+            <span className="font-medium">full-stack web development</span>{" "}along
             with my college course.{" "}
             <span className="italic">The thing I love about programming</span>{" "}
             is the problem-solving aspect. I{" "}
