@@ -8,6 +8,7 @@ import nexcapstudio from "@/public/nexcapstudio.png";
 import ImageGallery from "@/public/image gallery.png";
 import WillBeThere from "@/public/willbethere.png";
 import ChromaUI from "@/public/ChromaUi.png"
+import Todo from "@/public/Todo.png"
 import { FaLaptopCode } from "react-icons/fa6";
 
 export const links = [
@@ -80,6 +81,14 @@ export const projectsData = [
     tags: ["NextJs", "Tailwind", "Supabase", "Vercel"],
     imageUrl: ChromaUI,
     projectUrl: "https://chroma-ui-ecru.vercel.app",
+  },
+  {
+    title: "TaskFlow",
+    description:
+      "A clean and functional task management web application built to help users organize daily tasks. This project demonstrates core frontend development skills including state management, user interaction handling, and responsive UI design.",
+    tags: ["HTML", "CSS", "SQLite", "JavaScript"],
+    imageUrl: Todo,
+    projectUrl: "https://github.com/Nanashi-101/Todo_app.git",
   },
   {
     title: "€rypto",
