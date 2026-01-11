@@ -85,7 +85,7 @@ export const projectsData = [
   {
     title: "TaskFlow",
     description:
-      "A clean and functional task management web application built to help users organize daily tasks. This project demonstrates core frontend development skills including state management, user interaction handling, and responsive UI design.",
+      "This project demonstrates core frontend development skills including state management, user interaction handling, and responsive UI design.",
     tags: ["HTML", "CSS", "SQLite", "JavaScript"],
     imageUrl: Todo,
     projectUrl: "https://github.com/Nanashi-101/Todo_app.git",
