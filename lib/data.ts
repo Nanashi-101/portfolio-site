@@ -9,6 +9,8 @@ import ImageGallery from "@/public/image gallery.png";
 import WillBeThere from "@/public/willbethere.png";
 import ChromaUI from "@/public/ChromaUi.png"
 import Todo from "@/public/Todo.png"
+import Lumiere from "@/public/lumiere.jpeg"
+import Wanderlust from "@/public/wanderlust.jpeg"
 import { FaLaptopCode } from "react-icons/fa6";
 
 export const links = [
@@ -74,6 +76,22 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
+  {
+    title: "Wanderlust Journeys",
+    description:
+      "A dynamic travel platform that helps users discover and compare the best deals across flights, stays, and rentals. Built with a focus on usability, speed, and intuitive navigation.",
+    tags: ["NextJs", "Tailwind", "GSAP", "Vercel", "Resend", "Supabase"],
+    imageUrl: Wanderlust,
+    projectUrl: "https://wonderlust-jet-delta.vercel.app/en",
+  },
+  {
+    title: "Lumiere",
+    description:
+      "An elegant front-end project focused on clean UI, responsiveness, and user engagement.Combines modern design principles with fast, scalable deployment.",
+    tags: ["NextJs", "Tailwind", "Cloudflare", "Vercel"],
+    imageUrl: Lumiere,
+    projectUrl: "https://lumiere-sable-gamma.vercel.app",
+  },
   {
     title: "ChromaUI",
     description:
