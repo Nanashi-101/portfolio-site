@@ -80,7 +80,7 @@ export const projectsData = [
     title: "Wanderlust Journeys",
     description:
       "A dynamic travel platform that helps users discover and compare the best deals across flights, stays, and rentals. Built with a focus on usability, speed, and intuitive navigation.",
-    tags: ["NextJs", "Tailwind", "GSAP", "Vercel", "Resend", "Supabase"],
+    tags: ["NextJs", "Tailwind", "Vercel", "Resend", "Supabase"],
     imageUrl: Wanderlust,
     projectUrl: "https://wonderlust-jet-delta.vercel.app/en",
   },
