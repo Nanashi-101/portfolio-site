@@ -51,13 +51,8 @@ const Header = () => {
     }
     return (
         <header className='z-[999] relative flex '>
-            <motion.div className={
-                !pageScrolled
-                    ?
-                    `hidden sm:block fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-80 bg-white bg-opacity-[0.75] backdrop-blur-[0.5rem] shadow-lg shadow-black/[0.03] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75 dark:border-opacity-80 dark:shadow-slate-500/[0.03]`
-                    :
-                    `hidden sm:block fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-80 bg-white bg-opacity-[0.75] backdrop-blur-[0.5rem] shadow-lg shadow-black/[0.03] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full
-                dark:bg-gray-800 dark:border-black/40 dark:bg-opacity-75 dark:border-opacity-80 dark:shadow-slate-500/[0.03]`}
+            <motion.div 
+                className="hidden sm:block fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white/70 backdrop-blur-md shadow-lg shadow-black/[0.03] sm:top-6 sm:h-[3.25rem] sm:w-[38rem] sm:rounded-full dark:bg-gray-950/70 dark:border-white/10 dark:shadow-none"
                 initial={{ y: -100, x: "-50%", opacity: 0 }}
                 animate={{ y: 0, x: "-50%", opacity: 1 }}
                 transition={{ delay: 0.05, duration: 0.3 }}
@@ -81,12 +76,13 @@ const Header = () => {
                                     >
                                         {link.name}
                                         {(link.name === activeSection) && (
-                                            <motion.span className={!pageScrolled ? 'bg-gray-200 rounded-full absolute inset-0 -z-10 dark:bg-gray-800' : 'bg-gray-200 rounded-full absolute inset-0 -z-10 dark:bg-gray-950'}
+                                            <motion.span 
+                                                className="bg-primary-100 rounded-full absolute inset-0 -z-10 dark:bg-primary-900/30"
                                                 layoutId='activeSection'
                                                 transition={{
                                                     type: "spring",
                                                     stiffness: 380,
-                                                    damping: 40
+                                                    damping: 30
                                                 }}
                                             />
                                         )}
@@ -97,21 +93,28 @@ const Header = () => {
                     }
                 </ul>
             </nav>
-            <div className={mobileMenuScroll ? 'fixed w-full  sm:hidden cursor-pointer h-[4.5rem]' : 'fixed w-full sm:hidden cursor-pointer py-3 px-5 bg-gray-200/80 dark:bg-black/70 backdrop-blur-sm h-[4.5rem]'}>
-                <AiOutlineMenu size={30} onClick={handleMenu} id='menu-btn' className='text-gray-700 dark:text-white/80 fixed top-5 right-5' />
+            <div className={mobileMenuScroll ? 'fixed w-full sm:hidden cursor-pointer h-[4rem] z-[1000]' : 'fixed w-full sm:hidden cursor-pointer py-3 px-5 bg-white/70 dark:bg-gray-950/70 backdrop-blur-md border-b border-black/5 dark:border-white/10 h-[4rem] z-[1000]'}>
+                <AiOutlineMenu size={28} onClick={handleMenu} id='menu-btn' className='text-gray-700 dark:text-white/80 absolute top-4 right-5' />
             </div>
-            <nav className={!mobileMenu ? "fixed top-0 left-0 bottom-0 right-0 flex sm:hidden h-screen w-full py-2 bg-gray-200/90 dark:bg-black/80 dark:text-white/70 backdrop-blur-[0.7rem] ease-in duration-300" : "fixed top-0 left-[-100%] flex sm:hidden h-screen w-full z-[999] py-2 bg-gray-200/90 dark:bg-black/80 dark:text-white/70 backdrop-blur-2 ease-in duration-300"} id='mobile-nav'>
-                <ul className='relative flex flex-col  w-full items-center justify-center font-medium text-xl uppercase sm:text-[0.9rem] sm:w-[initial] gap-5 sm:gap-5'>
-                    <AiOutlineClose size={30} className='absolute top-5 right-5 cursor-pointer' onClick={handleMenu} />
+            <nav className={clsx("fixed inset-0 z-[1001] flex sm:hidden h-screen w-full bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl transition-all duration-300", {
+                "translate-x-0 opacity-100": !mobileMenu,
+                "translate-x-full opacity-0": mobileMenu
+            })} id='mobile-nav'>
+                <AiOutlineClose size={32} className='absolute top-6 right-6 cursor-pointer text-gray-700 dark:text-white/80' onClick={handleMenu} />
+                
+                <ul className='flex flex-col w-full h-full items-center justify-center gap-8 text-2xl font-bold uppercase tracking-widest'>
                     {
-                        links.map(link => {
+                        links.map((link, index) => {
                             return (
-                                <motion.li key={link.hash} className='relative flex  items-center justify-center'
-                                    initial={{ y: -100, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    transition={{ delay: 0.05, duration: 0.3 }}>
-                                    <Link href={link.hash} className={clsx('flex items-center justify-center w-full p-3 hover:text-gray-950 hover:bg-gray-300  rounded-full transition dark:text-gray-200 dark:hover:text-gray-300 dark:hover:bg-gray-800', {
-                                        'text-gray-950 dark:text-gray-200': activeSection === link.name
+                                <motion.li 
+                                    key={link.hash}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={!mobileMenu ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                                    transition={{ delay: 0.1 + index * 0.05 }}
+                                >
+                                    <Link href={link.hash} className={clsx('transition-all hover:text-primary-500', {
+                                        'text-primary-600 dark:text-primary-400': activeSection === link.name,
+                                        'text-gray-700 dark:text-white/70': activeSection !== link.name
                                     })}
                                         onClick={() => {
                                             handleMenu();
@@ -125,7 +128,13 @@ const Header = () => {
                             )
                         })
                     }
-                    <ThemeChangerBtnMob />
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={!mobileMenu ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+                        transition={{ delay: 0.4 }}
+                    >
+                        <ThemeChangerBtnMob />
+                    </motion.div>
                 </ul>
             </nav>
         </header>

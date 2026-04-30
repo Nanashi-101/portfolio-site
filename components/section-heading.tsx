@@ -8,7 +8,10 @@ interface HeadingProps {
 
 const SectionHeading = ({ children }: HeadingProps) => {
     return (
-        <h2 className='text-3xl font-medium capitalize mb-8 text-center'>{children}</h2>
+        <div className="flex flex-col items-center mb-16">
+            <h2 className='text-3xl sm:text-4xl font-bold capitalize text-gray-900 dark:text-white mb-4'>{children}</h2>
+            <div className="w-12 h-1.5 bg-primary-500 rounded-full" />
+        </div>
     )
 }
 

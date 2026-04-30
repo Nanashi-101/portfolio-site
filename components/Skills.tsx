@@ -13,54 +13,79 @@ import nodeImg from "@/public/node.png";
 import { StaticImageData } from "next/image";
 
 const Skills = () => {
-  const { ref, inView } = useActiveSectionView("Skills", 0.1);
+  const { ref } = useActiveSectionView("Skills", 0.1);
+
+  const categories = [
+    {
+      title: "Frontend",
+      skills: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion", "SCSS", "JavaScript", "HTML"],
+      icon: nextImg,
+    },
+    {
+      title: "Backend & DB",
+      skills: ["Node.js", "Express", "MongoDB", "Prisma"],
+      icon: nodeImg,
+    },
+    {
+      title: "Tools & Others",
+      skills: ["Git", "Redux", "Vercel", "Cloudflare"],
+      icon: mongoImg,
+    }
+  ];
 
   const fadeAnimation = {
-    initial: { opacity: 0, y: 100 },
+    initial: { opacity: 0, y: 20 },
     animate: (index: number) => ({
       opacity: 1,
       y: 0,
       transition: {
         type: "spring",
+        stiffness: 100,
+        damping: 15,
         delay: 0.05 * index,
       },
     }),
   };
 
   return (
-    <div className="relative max-w-[60rem]">
-      <section
-        ref={ref}
-        className="mt-[10rem] mb-28 w-full text-center sm:my-40 scroll-mt-[15.5rem]"
-        id="skills"
-      >
-        <SectionHeading>my skills</SectionHeading>
-        <motion.div className="w-full mx-auto grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-x-3 gap-y-0 md:gap-6" variants={fadeAnimation} initial='initial' animate='animate'>
-          <SkillCard img={nextImg}>Next.Js</SkillCard>
-          <SkillCard img={typeImg}>Typescript</SkillCard>
-          <SkillCard img={mongoImg}>MongoDB</SkillCard>
-          <SkillCard img={nodeImg}>Node.Js</SkillCard>
-        </motion.div>
-        <ul className="max-w-[45rem] mx-auto flex flex-wrap items-center justify-center gap-2 gap-y-2 text-[0.725rem] md:text-md sm:text-xl">
-          {skillsData.map((skill, index) => (
-            <motion.li
-              key={index}
-              className="mb-3 text-gray-600 bg-white font-medium px-4 py-2 rounded-full cursor-text h transition-colors duration-300 ease-in-out dark:bg-white/10 dark:text-white/70"
-              variants={fadeAnimation}
-              initial="initial"
-              whileInView="animate"
-              whileHover="hover"
-              viewport={{
-                once: true,
-              }}
-              custom={index}
-            >
-              {skill}
-            </motion.li>
-          ))}
-        </ul>
-      </section>
-    </div>
+    <section
+      ref={ref}
+      className="mt-[10rem] mb-28 w-full max-w-[65rem] text-center sm:my-40 scroll-mt-[15.5rem] relative"
+      id="skills"
+    >
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary-500/5 blur-[120px] -z-10 rounded-full" />
+      
+      <SectionHeading>Technical Expertise</SectionHeading>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 px-4">
+        {categories.map((category, catIndex) => (
+          <motion.div 
+            key={category.title}
+            custom={catIndex}
+            variants={fadeAnimation}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="flex flex-col gap-6"
+          >
+            <SkillCard img={category.icon}>{category.title}</SkillCard>
+            
+            <ul className="flex flex-wrap items-center justify-center gap-2">
+              {category.skills.map((skill, index) => (
+                <motion.li
+                  key={skill}
+                  className="bg-white/80 dark:bg-white/5 border border-black/5 dark:border-white/10 px-4 py-2 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm hover:border-primary-500/30 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {skill}
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
+    </section>
   );
 };
 
