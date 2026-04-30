@@ -90,7 +90,7 @@ export const projectsData = [
       "An elegant front-end project focused on clean UI, responsiveness, and user engagement.Combines modern design principles with fast, scalable deployment.",
     tags: ["NextJs", "Tailwind", "Cloudflare", "Vercel"],
     imageUrl: Lumiere,
-    projectUrl: "https://lumiere-sable-gamma.vercel.app",
+    projectUrl: "https://lumiere-jet-one.vercel.app",
   },
   {
     title: "ChromaUI",
