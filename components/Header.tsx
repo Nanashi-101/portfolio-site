@@ -94,14 +94,13 @@ const Header = () => {
                 </ul>
             </nav>
             <div className={mobileMenuScroll ? 'fixed w-full sm:hidden cursor-pointer h-[4rem] z-[1000]' : 'fixed w-full sm:hidden cursor-pointer py-3 px-5 bg-white/70 dark:bg-gray-950/70 backdrop-blur-md border-b border-black/5 dark:border-white/10 h-[4rem] z-[1000]'}>
-                <AiOutlineMenu size={28} onClick={handleMenu} id='menu-btn' className='text-gray-700 dark:text-white/80 absolute top-4 right-5' />
+                <AiOutlineMenu size={28} onClick={handleMenu} id='menu-btn' className='text-gray-700 dark:text-white/80 absolute top-5 right-5' />
             </div>
             <nav className={clsx("fixed inset-0 z-[1001] flex sm:hidden h-screen w-full bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl transition-all duration-300", {
                 "translate-x-0 opacity-100": !mobileMenu,
                 "translate-x-full opacity-0": mobileMenu
             })} id='mobile-nav'>
                 <AiOutlineClose size={32} className='absolute top-6 right-6 cursor-pointer text-gray-700 dark:text-white/80' onClick={handleMenu} />
-                
                 <ul className='flex flex-col w-full h-full items-center justify-center gap-8 text-2xl font-bold uppercase tracking-widest'>
                     {
                         links.map((link, index) => {
