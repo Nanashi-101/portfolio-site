@@ -11,6 +11,8 @@ import ChromaUI from "@/public/ChromaUi.png"
 import Todo from "@/public/Todo.png"
 import Lumiere from "@/public/lumiere.jpeg"
 import Wanderlust from "@/public/wanderlust.jpeg"
+import UniInternship from "@/public/UniInternship.png"
+import Viddly from "@/public/Viddly.png"
 import { FaLaptopCode } from "react-icons/fa6";
 
 export const links = [
@@ -76,6 +78,22 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
+  {
+    title: "UniInternship Portal",
+    description:
+      "A University Internship Management Platform built for students. Connect with top companies, manage applications, and track your internship journey—all in one beautiful, modern platform.",
+    tags: ["React", "TypeScript", "Tailwind", "Vite", "Vercel"],
+    imageUrl: UniInternship,
+    projectUrl: "https://uni-internship-sand.vercel.app",
+  },
+  {
+    title: "Viddly",
+    description:
+      "A powerful, self-hosted video downloader with user authentication, download history, an in-app player, and support for 1000+ sites including YouTube, Vimeo, Twitter, and TikTok. Powered by yt-dlp.",
+    tags: ["Next.js", "TypeScript", "Tailwind", "Kinde Auth", "Railway"],
+    imageUrl: Viddly,
+    projectUrl: "https://videodownloader-production-1dd2.up.railway.app",
+  },
   {
     title: "Wanderlust Journeys",
     description:
