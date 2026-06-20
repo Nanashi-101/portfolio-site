@@ -3,109 +3,104 @@
 import { useState } from "react";
 import { sendEmail } from "@/actions/sendEmail";
 import { useActiveSectionView } from "@/hooks/hooks";
-import { MdOutlineDelete } from "react-icons/md";
 import { motion } from "framer-motion";
 import { SectionHeading } from "./section-heading";
 import SubmitButton from "./submit-btn";
 import toast from "react-hot-toast";
-import { BsRecycle } from "react-icons/bs";
 
 const Contact = () => {
-  const { ref, inView } = useActiveSectionView("Contact");
-  const [name, setName] = useState<string>("");
-  const [mail, setMail] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
+  const { ref } = useActiveSectionView("Contact");
+  const [name, setName] = useState("");
+  const [mail, setMail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const inputClass =
+    "w-full border-0 border-b border-ink/20 bg-transparent py-3 text-ink placeholder:text-ink/40 transition-colors focus:border-gold focus:outline-none";
+
   return (
-    <div className="relative w-[min(100%, 38rem)]">
-      {/* <div className="bg-[#ff6d79d7] absolute top-[8rem] left-1/2 -translate-x-1/2 h-[15.25rem] -z-10  max-w-[38rem] rounded-full blur-[30rem] sm:w-[68.75rem]"/> */}
-      <motion.section
-        className="mb-28 mt-32 sm:mb-28 sm:mt-32 scroll-mt-[7rem] sm:scroll-mt-[10rem]"
-        id="contact"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{
-          once: true,
-        }}
-        ref={ref}
-      >
-        <SectionHeading>Let's connect</SectionHeading>
-        <p className="text-center font-normal -mt-6">
-          You contact me at{" "}
-          <a
-            className="underline font-medium text-md hover:text-blue-900 dark:hover:text-purple-700 transition-all"
-            href="mailto:soumyadipsanyal2017@gmail.com"
-          >
-            Soumyadipsanyal2017@gmail.com
-          </a>{" "}
-          or fill in this form:
-        </p>
-        <form
-          action={async (FormData) => {
-            setName("");
-            setMail("");
-            setMessage("");
-            const { data, error } = await sendEmail(FormData);
-            toast.success("Email sent successfully!");
-          }}
-          className="flex flex-col mt-8 gap-5"
+    <motion.section
+      ref={ref}
+      id="contact"
+      className="w-full max-w-[640px] scroll-mt-28 px-4 pb-10"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <SectionHeading index="05" kicker="contact">let&apos;s connect</SectionHeading>
+
+      <p className="-mt-6 text-center text-ink/65">
+        Have a project in mind or just want to say hi? Email me at{" "}
+        <a
+          className="font-semibold text-gold underline-offset-4 hover:underline"
+          href="mailto:soumyadipsanyal2017@gmail.com"
         >
-          <input
-            className="h-14 px-5 py-3 bg-gray-200 sm:bg-white/60 dark:bg-white/20 dark:placeholder:text-white/80 rounded-xl border border-black/10 text-gray-900 text-lg font-medium placeholder:text-gray-500 focus:placeholder:text-gray-900 dark:text-gray-200"
-            type="text"
-            placeholder="Your Name"
-            maxLength={50}
-            id="senderName"
-            name="senderName"
-            required
-            value={name}
-            onChange={(name) => setName(name.target.value)}
-          />
-          <input
-            className="h-14 px-5 py-3 bg-gray-200 sm:bg-white/60 dark:bg-white/20 dark:placeholder:text-white/80 rounded-xl border border-black/10 text-gray-900 text-lg font-medium placeholder:text-gray-500 focus:placeholder:text-gray-900 dark:text-gray-200"
-            type="email"
-            placeholder="Your email"
-            id="senderEmail"
-            name="senderEmail"
-            required
-            value={mail}
-            onChange={(mail) => setMail(mail.target.value)}
-          />
-          <textarea
-            className="h-52 px-5 py-3 bg-gray-200 sm:bg-white/60 dark:bg-white/20 dark:placeholder:text-white/80 rounded-xl border border-black/10 text-gray-900 dark:text-gray-200  text-lg font-medium placeholder:text-gray-500 focus:placeholder:text-gray-900 "
-            name="senderMsg"
-            id="senderMsg"
-            placeholder="Your message"
-            value={message}
-            maxLength={5000}
-            onChange={(message) => setMessage(message.target.value)}
-          ></textarea>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-4">
-            <SubmitButton />
-            <button
-              className="bg-gray-100 border border-black/[0.05] text-lg font-medium flex items-center justify-center gap-2 w-[200px] outline-none px-3 py-3 rounded-full text-center hover:tracking-wider hover:scale-110 focus:scale-110 active:scale-105 transition-all dark:bg-gray-200 dark:hover:bg-gray-100 dark:text-black"
-              onClick={() => {
-                if (
-                  name.length === 0 &&
-                  mail.length === 0 &&
-                  message.length === 0
-                ) {
-                  toast.error("Form is already empty!");
-                } else {
-                  setName("");
-                  setMail("");
-                  setMessage("");
-                  toast.success("Form cleared successfully!");
-                }
-              }}
-            >
-              Clear form
-              <MdOutlineDelete />
-            </button>
-          </div>
-        </form>
-      </motion.section>
-    </div>
+          soumyadipsanyal2017@gmail.com
+        </a>{" "}
+        or use the form below.
+      </p>
+
+      <form
+        action={async (formData) => {
+          const { error } = await sendEmail(formData);
+          if (error) {
+            toast.error(typeof error === "string" ? error : "Something went wrong.");
+            return;
+          }
+          toast.success("Message sent successfully!");
+          setName("");
+          setMail("");
+          setMessage("");
+        }}
+        className="mt-10 flex flex-col gap-7"
+      >
+        <input
+          className={inputClass}
+          type="text"
+          name="senderName"
+          placeholder="Your name"
+          maxLength={50}
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          className={inputClass}
+          type="email"
+          name="senderEmail"
+          placeholder="Your email"
+          required
+          value={mail}
+          onChange={(e) => setMail(e.target.value)}
+        />
+        <textarea
+          className={`${inputClass} h-32 resize-none`}
+          name="senderMsg"
+          placeholder="Your message"
+          maxLength={5000}
+          required
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
+          <SubmitButton />
+          <button
+            type="button"
+            onClick={() => {
+              if (!name && !mail && !message) {
+                toast.error("Form is already empty!");
+              } else {
+                setName(""); setMail(""); setMessage("");
+                toast.success("Form cleared.");
+              }
+            }}
+            className="rounded-full border border-ink/20 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-gold hover:text-gold"
+          >
+            Clear
+          </button>
+        </div>
+      </form>
+    </motion.section>
   );
 };
 

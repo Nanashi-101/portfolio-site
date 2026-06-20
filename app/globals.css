@@ -2,19 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
-  scroll-behavior: smooth !important;
-  --line-color: #e5e7eb;
+:root {
+  --surface: 225 223 221;   /* #e1dfdd warm grey */
+  --ink: 28 28 28;          /* #1c1c1c near-black */
+  --gold: 208 160 58;       /* #d0a03a brighter */
+  --line-color: #d4d2cd;
 }
 
-html.dark{
-  scroll-behavior: smooth !important;
-  --line-color: rgba(255,255,255,0.15);
-  --line-border-radius: 50px;
+.dark {
+  --surface: 17 17 16;      /* #111110 */
+  --ink: 234 233 231;       /* #eae9e7 */
+  --gold: 226 186 92;       /* #e2ba5c brighter */
+  --line-color: rgba(255,255,255,0.14);
 }
 
-@layer components{
-  .btn-base{
-    @apply bg-gray-800 text-white px-8 py-3 rounded-full flex justify-center items-center gap-2 duration-300  shadow-xl outline-none hover:scale-110 hover:bg-gray-900 focus:scale-105 active:scale-100;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--surface));
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-float-slow,
+    .animate-marquee { animation: none !important; }
   }
 }
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* Custom cursor */
+@media (pointer: fine) {
+  html.cursor-none, html.cursor-none * { cursor: none !important; }
+}
+

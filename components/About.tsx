@@ -2,110 +2,126 @@
 
 import { useActiveSectionView } from "@/hooks/hooks";
 import { motion } from "framer-motion";
-import { AboutHeading } from "./section-heading";
 import Image from "next/image";
-import myimg from "@/public/Me_Prof.png";
-import {
-  BsDiscord,
-  BsFacebook,
-  BsInstagram,
-} from "react-icons/bs";
+import Link from "next/link";
+import { BsArrowRight, BsDiscord, BsInstagram, BsFacebook } from "react-icons/bs";
+import { HiDownload } from "react-icons/hi";
+import toast from "react-hot-toast";
+import aboutImg from "@/public/about-pic.jpeg";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const facts = [
+    { label: "Based in", value: "Warsaw, Poland" },
+    { label: "Focus", value: "Full-stack web" },
+    { label: "Core stack", value: "React · Next · Node" },
+    { label: "Status", value: "Open to work" },
+];
+
+const socials = [
+    { href: "https://www.facebook.com/Soumyadip.2024", label: "Facebook", Icon: BsFacebook },
+    { href: "https://www.instagram.com/ign._.kratos", label: "Instagram", Icon: BsInstagram },
+    { href: "https://discord.com/channels/@me", label: "Discord", Icon: BsDiscord },
+];
 
 const About = () => {
-  const { ref, inView } = useActiveSectionView("About");
-  return (
-    <motion.section
-      className="mb-[9rem] mt-[2rem] max-w-[1240px] flex flex-col lg:flex-row gap-8 lg:gap-0 items-center justify-center text-justify leading-8 p-8 sm:mb-28 sm:mt-10 scroll-mt-[6.5rem] sm:scroll-mt-[12.2rem]"
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175, duration: 0.3 }}
-      id="about"
-      ref={ref}
-    >
-      <div className="w-full lg:w-[45%] mx-auto flex items-center">
-        <Image
-          src={myimg}
-          alt="my-pfp"
-          className="w-full lg:w-[87%] rounded-lg shadow-xl"
-        />
-      </div>
-      <div className="w-full lg:w-[55%] flex flex-col justify-center">
-        <AboutHeading>about me</AboutHeading>
-        <div className="flex flex-col gap-5">
-          <p className="mb-3 tracking-tighter">
-            After graduating from highschool back in{" "}
-            <span className="font-medium">India</span>, I decided to pursue my
-            dream of moving abroad. So, I enrolled in{" "}
-            <span className="font-medium">Vistula University</span> in Poland
-            and started learning{" "}
-            <span className="font-medium">full-stack web development</span>{" "}along
-            with my college course.{" "}
-            <span className="italic">The thing I love about programming</span>{" "}
-            is the problem-solving aspect. I{" "}
-            <span className="font-medium uppercase underline">love</span> the
-            feeling of finally figuring out a solution to a problem. My core
-            stack is{" "}
-            <span className="font-medium">
-              React, Next.js, Node.js, and MongoDB
-            </span>
-            . I am also familiar with TypeScript and recently I have started
-            taking interest in the field of{" "}
-            <span className="font-medium italic">Web-designing</span>. I am
-            always looking to learn new technologies related to{" "}
-            <span className="font-medium ">scalability & performance</span> to
-            improve more'n more everyday. I am currently looking for a{" "}
-            <span className="font-medium">full-time position</span> as a
-            software developer.
-          </p>
-          <p>
-            <span className="italic">When I'm not coding</span>, I enjoy playing
-            video games, watching movies, and playing with my dog. I also enjoy
-            reading books on{" "}
-            <span className="font-medium italic">Sci-fi & Adventure</span>.
-            Also, I am a huge fan of{" "}
-            <span className="font-medium underline">Music</span>.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <h1 className="text-xl font-medium tracking-tight mr-10">
-              Follow me on:
-            </h1>
-            <div className="flex gap-3">
-              <a
-                href="https://www.facebook.com/Soumyadip.2024"
-                className="flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80"
-                target="_main"
-              >
-                <BsFacebook
-                  size={20}
-                  className="text-[#1877F2] dark:text-white"
-                />
-              </a>
-              <a
-                href="https://www.instagram.com/ign._.kratos"
-                className="flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80"
-                target="_main"
-              >
-                <BsInstagram
-                  size={20}
-                  className="text-[#E1306C] dark:text-white"
-                />
-              </a>
-              <a
-                href="https://discord.com/channels/@me"
-                className="flex bg-white text-black p-4 rounded-full gap-2 items-center justify-center duration-300 hover:scale-110 focus:scale-110 active:scale-100 cursor-pointer shadow-lg border border-black/10 dark:bg-white/10 dark:text-white/80"
-                target="_main"
-              >
-                <BsDiscord
-                  size={20}
-                  className="text-[#9656CE] dark:text-white"
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.section>
-  );
+    const { ref } = useActiveSectionView("About");
+
+    return (
+        <section ref={ref} id="about" className="w-full max-w-[1180px] scroll-mt-28 px-4">
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: EASE }}
+                className="grid overflow-hidden shadow-2xl lg:grid-cols-2"
+            >
+                {/* TEXT half — white (light) / gold (dark); dark text in both */}
+                <div className="bg-white p-8 text-neutral-900 dark:bg-gold sm:p-10 lg:p-14">
+                    <div className="mb-5 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-neutral-900/65">
+                        <span>04</span>
+                        <span className="h-px w-10 bg-neutral-900/40" />
+                        <span>about</span>
+                    </div>
+
+                    <h2 className="text-4xl font-black lowercase leading-[0.95] tracking-tight sm:text-5xl">
+                        full-stack developer<br />
+                        <span className="text-neutral-900/55">based in warsaw.</span>
+                    </h2>
+
+                    <div className="mt-6 space-y-4 text-[0.95rem] leading-relaxed text-neutral-900/80">
+                        <p>
+                            After finishing high school in <span className="font-semibold text-neutral-900">India</span>, I moved abroad to study at{" "}
+                            <span className="font-semibold text-neutral-900">Vistula University</span> in Poland, teaching myself{" "}
+                            <span className="font-semibold text-neutral-900">full-stack web development</span> alongside my degree. What I love most
+                            is the problem-solving — that moment a stubborn bug finally gives way.
+                        </p>
+                        <p>
+                            My core stack is <span className="font-semibold text-neutral-900">React, Next.js, Node.js and MongoDB</span>, with TypeScript
+                            and a growing focus on performance, accessibility and clean design.
+                        </p>
+                    </div>
+
+                    <dl className="mt-8 grid max-w-md grid-cols-2 gap-x-8 gap-y-5">
+                        {facts.map((f) => (
+                            <div key={f.label} className="border-t border-neutral-900/20 pt-3">
+                                <dt className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-neutral-900/60">{f.label}</dt>
+                                <dd className="mt-1 break-words text-sm font-semibold text-neutral-900">{f.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+
+                    <div className="mt-9 flex flex-wrap items-center gap-5">
+                        <Link
+                            href="#contact"
+                            className="group inline-flex items-center gap-2 rounded-full bg-neutral-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700"
+                        >
+                            Get in touch
+                            <BsArrowRight className="transition-transform group-hover:translate-x-1" />
+                        </Link>
+                        <a
+                            href="/My_Resume.pdf"
+                            download
+                            onClick={() => toast.success("Downloading CV…")}
+                            className="group inline-flex items-center gap-2 rounded-full border border-neutral-900/30 px-7 py-3.5 text-sm font-semibold text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white"
+                        >
+                            Download CV
+                            <HiDownload className="transition-transform group-hover:translate-y-0.5" />
+                        </a>
+                        <div className="flex items-center gap-3">
+                            {socials.map(({ href, label, Icon }) => (
+                                <a
+                                    key={label}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={label}
+                                    className="grid h-11 w-11 place-items-center rounded-full border border-neutral-900/30 text-neutral-900 transition-all hover:-translate-y-1 hover:bg-neutral-900 hover:text-white"
+                                >
+                                    <Icon size={17} />
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* PIC half — gold (light) / white (dark); image centered, medium */}
+                <div className="flex items-center justify-center bg-gold p-8 dark:bg-white sm:p-12">
+                    <div className="w-full max-w-[300px]">
+                        <div className="relative aspect-[4/5] w-full overflow-hidden">
+                            <Image
+                                src={aboutImg}
+                                alt="Soumyadip Sanyal"
+                                fill
+                                sizes="300px"
+                                className="object-cover"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+        </section>
+    );
 };
 
 export default About;

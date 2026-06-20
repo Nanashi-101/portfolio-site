@@ -1,19 +1,18 @@
+import AnimatedBackground from "@/components/AnimatedBackground";
+import CursorGlow from "@/components/CursorGlow";
+import CustomCursor from "@/components/CustomCursor";
 import Header from "@/components/Header";
-import ThemeChangerBtn from "@/components/ThemeChangerBtn";
+import ScrollFollower from "@/components/ScrollFollower";
+import ScrollProgress from "@/components/ScrollProgress";
+import SmoothScroll from "@/components/SmoothScroll";
 import ActiveSectionProvider from "@/context/active-section-context";
 import ThemeContextProvider from "@/context/theme-context";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
-import { BsArrowBarUp, BsArrowUp } from "react-icons/bs";
-import Link from "next/link";
 
 const outfit = Outfit({ subsets: ["latin"] });
-
-//Required color code:
-// bluish-hue: #6271f8
-// some-red: #fa2b3c
 
 export const metadata: Metadata = {
   title: "Soumyadip | Personal Portfolio",
@@ -27,19 +26,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.className} bg-slate-50 relative  sm:pt-36 dark:bg-gray-950 dark:text-gray-50/90 transition-colors duration-500 overflow-x-hidden`}>
-        <div className="bg-[#fbe2e3] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#946263]" />
-        <div className="bg-[#dbd7fb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]" />
+      <body className={`${outfit.className} relative pt-[4.5rem] text-ink transition-colors duration-500 overflow-x-hidden`}>
+        <AnimatedBackground />
+        <CursorGlow />
 
         <ThemeContextProvider>
           <ActiveSectionProvider>
+            <ScrollProgress />
+            <ScrollFollower />
+            <CustomCursor />
             <Header />
-            {children}
-            <Toaster position="top-left" />
-            <ThemeChangerBtn />
+            <SmoothScroll>{children}</SmoothScroll>
+            <Toaster
+              position="bottom-center"
+              toastOptions={{
+                style: { borderRadius: "9999px", background: "#1c1c1c", color: "#fff", fontSize: "0.85rem", fontWeight: 600, padding: "10px 18px" },
+                success: { iconTheme: { primary: "#d0a03a", secondary: "#fff" } },
+                error: { iconTheme: { primary: "#e24b4a", secondary: "#fff" } },
+              }}
+            />
           </ActiveSectionProvider>
         </ThemeContextProvider>
       </body>
-    </html >
+    </html>
   );
 }

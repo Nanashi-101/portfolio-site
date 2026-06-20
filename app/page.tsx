@@ -11,7 +11,7 @@ import Blogs from "@/components/blog";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center px-4">
+    <main className="flex flex-col items-center justify-center gap-y-20 px-4 sm:gap-y-0">
       <Intro />
       <ScrollDown />
       <Skills />

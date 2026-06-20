@@ -1,89 +1,71 @@
 "use client";
 
-import React,{ useEffect, useState } from "react";
+import React from "react";
 import { SectionHeading } from "./section-heading";
-import { skillsData } from "@/lib/data";
 import { useActiveSectionView } from "@/hooks/hooks";
-import { animate, motion } from "framer-motion";
-import SkillCard from "./skillCard";
-import nextImg from "@/public/next_logo.png";;
-import typeImg from "@/public/typescript.png";
-import mongoImg from "@/public/mongodb.png";
-import nodeImg from "@/public/node.png";
-import { StaticImageData } from "next/image";
+import { motion } from "framer-motion";
+import { FiLayout, FiDatabase, FiTool } from "react-icons/fi";
+
+const categories = [
+  {
+    title: "Frontend",
+    icon: FiLayout,
+    skills: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion", "SCSS", "JavaScript", "HTML"],
+  },
+  {
+    title: "Backend & DB",
+    icon: FiDatabase,
+    skills: ["Node.js", "Express", "MongoDB", "Prisma"],
+  },
+  {
+    title: "Tools & Others",
+    icon: FiTool,
+    skills: ["Git", "Redux", "Vercel", "Cloudflare"],
+  },
+];
 
 const Skills = () => {
   const { ref } = useActiveSectionView("Skills", 0.1);
 
-  const categories = [
-    {
-      title: "Frontend",
-      skills: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion", "SCSS", "JavaScript", "HTML"],
-      icon: nextImg,
-    },
-    {
-      title: "Backend & DB",
-      skills: ["Node.js", "Express", "MongoDB", "Prisma"],
-      icon: nodeImg,
-    },
-    {
-      title: "Tools & Others",
-      skills: ["Git", "Redux", "Vercel", "Cloudflare"],
-      icon: mongoImg,
-    }
-  ];
-
-  const fadeAnimation = {
-    initial: { opacity: 0, y: 20 },
-    animate: (index: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        delay: 0.05 * index,
-      },
-    }),
-  };
-
   return (
     <section
       ref={ref}
-      className="mt-[10rem] mb-28 w-full max-w-[65rem] text-center sm:my-40 scroll-mt-[15.5rem] relative"
       id="skills"
+      className="mb-28 mt-24 w-full max-w-[1100px] scroll-mt-28 px-4 sm:my-40"
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary-500/5 blur-[120px] -z-10 rounded-full" />
-      
-      <SectionHeading>Technical Expertise</SectionHeading>
+      <SectionHeading index="01" kicker="toolkit">skills</SectionHeading>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 px-4">
-        {categories.map((category, catIndex) => (
-          <motion.div 
-            key={category.title}
-            custom={catIndex}
-            variants={fadeAnimation}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="flex flex-col gap-6"
-          >
-            <SkillCard img={category.icon}>{category.title}</SkillCard>
-            
-            <ul className="flex flex-wrap items-center justify-center gap-2">
-              {category.skills.map((skill, index) => (
-                <motion.li
-                  key={skill}
-                  className="bg-white/80 dark:bg-white/5 border border-black/5 dark:border-white/10 px-4 py-2 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm hover:border-primary-500/30 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {skill}
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {categories.map((cat, i) => {
+          const Icon = cat.icon;
+          return (
+            <motion.div
+              key={cat.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="rounded-2xl border border-ink/10 bg-white/55 dark:bg-white/[0.04] p-7 backdrop-blur-sm transition-colors duration-300 hover:border-gold/50"
+            >
+              <div className="mb-6 flex items-center gap-3">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink/5 text-gold">
+                  <Icon size={20} />
+                </span>
+                <h3 className="text-lg font-bold lowercase tracking-tight text-ink">{cat.title}</h3>
+              </div>
+              <ul className="flex flex-wrap gap-2">
+                {cat.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="cursor-default rounded-lg border border-ink/15 px-3 py-1.5 text-sm font-medium text-ink/70 transition-colors duration-200 hover:border-gold hover:text-gold"
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
