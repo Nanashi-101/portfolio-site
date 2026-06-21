@@ -1,9 +1,11 @@
 # Soumyadip Sanyal — Personal Portfolio
 
+![Soumyadip Sanyal — Web Developer](./public/og.png)
+
 A minimalist, editorial portfolio for a full-stack web developer — built around a warm
 grey/ink/gold palette, big lowercase typography, generous whitespace, and tasteful motion.
 
-🔗 **Live:** https://portfolio-site-olive-two.vercel.app
+🔗 **Live:** https://sany4l.dev
 
 ---
 

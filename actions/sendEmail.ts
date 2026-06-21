@@ -8,7 +8,7 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const MY_EMAIL = "soumyadipsanyal2017@gmail.com";
-const FROM = "Soumyadip Portfolio <onboarding@resend.dev>";
+const FROM = process.env.RESEND_FROM || "Soumyadip Portfolio <onboarding@resend.dev>";
 
 export const sendEmail = async (formData: FormData) => {
     const message = formData.get('senderMsg');

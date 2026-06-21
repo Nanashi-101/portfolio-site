@@ -14,9 +14,39 @@ import "./globals.css";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
+const SITE_URL = "https://sany4l.dev";
+const DESCRIPTION =
+  "Soumyadip Sanyal — a full-stack web developer crafting clean, minimal, and high-performance web experiences with React, Next.js & TypeScript.";
+
 export const metadata: Metadata = {
-  title: "Soumyadip | Personal Portfolio",
-  description: "Welcome aboard! I am Soumyadip, a full-stack developer, and this is my personal portfolio.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Soumyadip Sanyal — Web Developer",
+    template: "%s · Soumyadip Sanyal",
+  },
+  description: DESCRIPTION,
+  keywords: [
+    "Soumyadip Sanyal", "web developer", "full-stack developer",
+    "React", "Next.js", "TypeScript", "Node.js", "portfolio", "Warsaw",
+  ],
+  authors: [{ name: "Soumyadip Sanyal", url: SITE_URL }],
+  creator: "Soumyadip Sanyal",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Soumyadip Sanyal — Web Developer",
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Soumyadip Sanyal",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Soumyadip Sanyal — Web Developer" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Soumyadip Sanyal — Web Developer",
+    description: DESCRIPTION,
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
