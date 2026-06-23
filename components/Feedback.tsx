@@ -26,7 +26,7 @@ const steps: { id: StepId; type: "stars" | "text"; q: string; hint?: string; opt
 function Stars({ value, onChange }: { value: number; onChange: (n: number) => void }) {
     const [hover, setHover] = useState(0);
     return (
-        <div className="flex items-center gap-2.5" onMouseLeave={() => setHover(0)}>
+        <div className="flex items-center gap-2 sm:gap-3" onMouseLeave={() => setHover(0)}>
             {[1, 2, 3, 4, 5].map((n) => (
                 <button
                     key={n}
@@ -34,7 +34,7 @@ function Stars({ value, onChange }: { value: number; onChange: (n: number) => vo
                     aria-label={`${n} star${n > 1 ? "s" : ""}`}
                     onMouseEnter={() => setHover(n)}
                     onClick={() => onChange(n)}
-                    className="text-4xl transition-transform duration-150 hover:scale-110 active:scale-95"
+                    className="text-3xl transition-transform duration-150 hover:scale-110 active:scale-95 sm:text-4xl"
                 >
                     {(hover || value) >= n ? <BsStarFill className="text-gold" /> : <BsStar className="text-ink/25" />}
                 </button>
