@@ -89,3 +89,55 @@ export const EmailTemplateMe = ({ name, senderMail, message }: MeProps) => (
         </Tailwind>
     </Html>
 );
+
+
+interface FeedbackProps { overall: number; design: number; performance: number; liked: string; suggestion: string; name?: string; coffee?: boolean; }
+const stars = (n: number) => "★".repeat(n) + "☆".repeat(5 - n);
+
+// Feedback (and "buy me a coffee" interest) sent to me
+export const EmailTemplateFeedback = ({ overall, design, performance, liked, suggestion, name, coffee }: FeedbackProps) => (
+    <Html>
+        <Head />
+        <Preview>{overall ? "New portfolio feedback" : "Someone clicked Buy me a coffee"}</Preview>
+        <Tailwind>
+            <Body className='bg-gray-100 p-4'>
+                <Container>
+                    <Section className='my-10 rounded-xl bg-white px-10 py-6'>
+                        <Brand />
+                        <Hr />
+                        <Text className='text-2xl font-bold leading-tight text-gray-900'>
+                            {overall ? "⭐ New portfolio feedback" : "☕ Buy me a coffee — interest"}
+                        </Text>
+                        <Text className='text-gray-700'>From: {name && name.trim() ? name : "Anonymous"}</Text>
+                        {coffee ? (
+                            <Text className='my-3 rounded-xl bg-yellow-100 px-5 py-3 font-bold text-yellow-800'>
+                                ☕ This visitor clicked &ldquo;Buy me a coffee&rdquo; (PayPal).
+                            </Text>
+                        ) : null}
+                        {overall ? (
+                            <>
+                                <Hr />
+                                <Text className='m-0 text-gray-700'><span className='font-bold'>Overall:</span> {stars(overall)} ({overall}/5)</Text>
+                                <Text className='m-0 text-gray-700'><span className='font-bold'>Design &amp; visuals:</span> {stars(design)} ({design}/5)</Text>
+                                <Text className='m-0 text-gray-700'><span className='font-bold'>Performance:</span> {stars(performance)} ({performance}/5)</Text>
+                            </>
+                        ) : null}
+                        {liked ? (
+                            <>
+                                <Hr />
+                                <Text className='font-bold text-gray-900'>Enjoyed most</Text>
+                                <Text className='my-2 rounded-xl border-l-[6px] border-l-gray-400 bg-gray-100 px-5 py-3 text-gray-800'>{liked}</Text>
+                            </>
+                        ) : null}
+                        {suggestion ? (
+                            <>
+                                <Text className='font-bold text-gray-900'>Suggestions</Text>
+                                <Text className='my-2 rounded-xl border-l-[6px] border-l-gray-400 bg-gray-100 px-5 py-3 text-gray-800'>{suggestion}</Text>
+                            </>
+                        ) : null}
+                    </Section>
+                </Container>
+            </Body>
+        </Tailwind>
+    </Html>
+);
