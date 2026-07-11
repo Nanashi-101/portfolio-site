@@ -2,142 +2,131 @@
 
 import { useActiveSectionView } from '@/hooks/hooks';
 import { projectsData } from '@/lib/data';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { FiArrowUpRight } from "react-icons/fi";
 import { SectionHeading } from './section-heading';
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+type Project = (typeof projectsData)[number];
+
+const CARD_STAGGER = 28; // px each card peeks above the next one
+const SCALE_STEP = 0.045; // how much buried cards shrink
+
+const Card = ({
+    project,
+    i,
+    total,
+    progress,
+}: {
+    project: Project;
+    i: number;
+    total: number;
+    progress: MotionValue<number>;
+}) => {
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    // inner image zooms out as the card scrolls into view
+    const { scrollYProgress: entry } = useScroll({
+        target: cardRef,
+        offset: ["start end", "start start"],
+    });
+    const imageScale = useTransform(entry, [0, 1], [1.35, 1]);
+
+    // once the next cards pile on top, this one scales back and dims
+    const targetScale = 1 - (total - 1 - i) * SCALE_STEP;
+    const range: [number, number] = [i / total, 1];
+    const scale = useTransform(progress, range, [1, targetScale]);
+    const dim = useTransform(progress, range, [0, 0.35]);
+
+    return (
+        <div
+            ref={cardRef}
+            className="sticky flex h-screen items-center justify-center"
+            style={{ top: 0 }}
+        >
+            <motion.div
+                style={{ scale, top: `calc(-6vh + ${i * CARD_STAGGER}px)` }}
+                className="relative flex h-[min(620px,78vh)] w-full max-w-[1000px] origin-top flex-col overflow-hidden rounded-3xl border border-ink/10 bg-surface shadow-2xl md:h-[500px] md:flex-row"
+            >
+                {/* image */}
+                <div className="relative h-[42%] w-full shrink-0 overflow-hidden md:h-full md:w-[48%]">
+                    <motion.div style={{ scale: imageScale }} className="absolute inset-0">
+                        <Image
+                            src={project.imageUrl}
+                            alt={project.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 480px"
+                            className="object-cover"
+                        />
+                    </motion.div>
+                    <span className="absolute left-4 top-4 rounded-full bg-ink/80 px-3 py-1 text-xs font-bold tracking-[0.2em] text-surface">
+                        {String(i + 1).padStart(2, "0")}
+                    </span>
+                </div>
+
+                {/* content */}
+                <div className="flex flex-1 flex-col justify-center p-6 sm:p-8 md:p-10">
+                    <h3 className="text-2xl font-black tracking-tight text-ink sm:text-3xl md:text-4xl">
+                        {project.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink/65 sm:mt-4 sm:text-base">
+                        {project.description}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2 sm:mt-6">
+                        {project.tags.map((t, ti) => (
+                            <span
+                                key={ti}
+                                className="rounded-md border border-ink/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-ink/55"
+                            >
+                                {t}
+                            </span>
+                        ))}
+                    </div>
+                    <a
+                        href={project.projectUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-cursor-hover
+                        className="group mt-6 inline-flex w-fit items-center gap-2 text-sm font-bold text-gold sm:mt-8"
+                    >
+                        View project
+                        <FiArrowUpRight className="text-lg transition-transform duration-300 group-hover:rotate-45" />
+                    </a>
+                </div>
+
+                {/* dim overlay while buried under the next card */}
+                <motion.div
+                    style={{ opacity: dim }}
+                    className="pointer-events-none absolute inset-0 bg-ink/60"
+                />
+            </motion.div>
+        </div>
+    );
+};
 
 const Projects = () => {
-    const { ref } = useActiveSectionView("Projects", 0.2);
-    const [active, setActive] = useState<number | null>(null);
-    const [shown, setShown] = useState(0);
+    const { ref } = useActiveSectionView("Projects", 0.1);
+    const stackRef = useRef<HTMLDivElement>(null);
 
-    const mx = useMotionValue(0);
-    const my = useMotionValue(0);
-    const x = useSpring(mx, { stiffness: 220, damping: 26, mass: 0.4 });
-    const y = useSpring(my, { stiffness: 220, damping: 26, mass: 0.4 });
-
-    const handleMove = (e: React.MouseEvent) => {
-        mx.set(e.clientX + 32);
-        my.set(e.clientY - 190);
-    };
-
-    const preview = projectsData[shown];
+    const { scrollYProgress } = useScroll({
+        target: stackRef,
+        offset: ["start start", "end end"],
+    });
 
     return (
         <section ref={ref} id="projects" className="w-full max-w-[1100px] scroll-mt-28 px-4">
             <SectionHeading index="02" kicker="work">projects</SectionHeading>
 
-            {/* ---------- Desktop: editorial hover list + detailed preview ---------- */}
-            <div className="relative hidden lg:block" onMouseMove={handleMove} onMouseLeave={() => setActive(null)}>
-                {/* floating preview card */}
-                <motion.div
-                    style={{ x, y }}
-                    initial={{ opacity: 0, scale: 0.85 }}
-                    animate={{ opacity: active !== null ? 1 : 0, scale: active !== null ? 1 : 0.85 }}
-                    transition={{ duration: 0.35, ease: EASE }}
-                    className="pointer-events-none fixed left-0 top-0 z-30 w-[27rem] overflow-hidden rounded-2xl border border-ink/10 bg-surface shadow-2xl"
-                >
-                    <div className="relative h-52 w-full overflow-hidden">
-                        {projectsData.map((p, i) => (
-                            <Image
-                                key={i}
-                                src={p.imageUrl}
-                                alt={p.title}
-                                fill
-                                sizes="432px"
-                                className={`object-cover transition-opacity duration-300 ${shown === i ? "opacity-100" : "opacity-0"}`}
-                            />
-                        ))}
-                        <span className="absolute left-4 top-4 rounded-full bg-ink/80 px-3 py-1 text-xs font-bold tracking-[0.2em] text-surface">
-                            {String(shown + 1).padStart(2, "0")}
-                        </span>
-                    </div>
-                    <div className="p-6">
-                        <h4 className="text-xl font-bold tracking-tight text-ink">{preview.title}</h4>
-                        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/65">{preview.description}</p>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                            {preview.tags.slice(0, 5).map((t, ti) => (
-                                <span key={ti} className="rounded-md border border-ink/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-ink/55">
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
-                        <div className="mt-5 flex items-center gap-2 text-sm font-bold text-gold">
-                            View project <FiArrowUpRight />
-                        </div>
-                    </div>
-                </motion.div>
-
-                <ul>
-                    {projectsData.map((project, i) => (
-                        <motion.li
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: i * 0.05, ease: EASE }}
-                            onMouseEnter={() => { setActive(i); setShown(i); }}
-                        >
-                            <a
-                                href={project.projectUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-cursor-hover
-                                className="group flex items-center justify-between gap-8 border-b border-ink/10 py-7"
-                            >
-                                <div className="flex items-baseline gap-6">
-                                    <span className="text-sm font-bold tracking-[0.2em] text-gold">
-                                        {String(i + 1).padStart(2, "0")}
-                                    </span>
-                                    <h3 className="text-4xl font-black tracking-tight text-ink/75 transition-all duration-300 group-hover:translate-x-3 group-hover:text-gold">
-                                        {project.title}
-                                    </h3>
-                                </div>
-                                <div className="flex shrink-0 items-center gap-6">
-                                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/45">
-                                        {project.tags.slice(0, 3).join(" · ")}
-                                    </span>
-                                    <FiArrowUpRight className="text-3xl text-ink/35 transition-all duration-300 group-hover:rotate-45 group-hover:text-gold" />
-                                </div>
-                            </a>
-                        </motion.li>
-                    ))}
-                </ul>
-            </div>
-
-            {/* ---------- Mobile: full-color cards ---------- */}
-            <div className="flex flex-col gap-6 lg:hidden">
+            <div ref={stackRef} className="relative">
                 {projectsData.map((project, i) => (
-                    <motion.a
+                    <Card
                         key={i}
-                        href={project.projectUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, ease: EASE }}
-                        className="overflow-hidden rounded-2xl border border-ink/10 bg-white/55 dark:bg-white/[0.04]"
-                    >
-                        <div className="relative h-48 w-full overflow-hidden">
-                            <Image src={project.imageUrl} alt={project.title} fill sizes="100vw" className="object-cover" />
-                        </div>
-                        <div className="p-6">
-                            <div className="mb-2 flex items-center gap-3">
-                                <span className="text-xs font-bold tracking-[0.2em] text-gold">{String(i + 1).padStart(2, "0")}</span>
-                                <h3 className="text-xl font-bold tracking-tight text-ink">{project.title}</h3>
-                                <FiArrowUpRight className="ml-auto text-xl text-gold" />
-                            </div>
-                            <p className="text-sm leading-relaxed text-ink/65">{project.description}</p>
-                            <p className="mt-3 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink/45">
-                                {project.tags.slice(0, 4).join(" · ")}
-                            </p>
-                        </div>
-                    </motion.a>
+                        project={project}
+                        i={i}
+                        total={projectsData.length}
+                        progress={scrollYProgress}
+                    />
                 ))}
             </div>
         </section>
