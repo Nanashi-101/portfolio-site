@@ -1,106 +1,183 @@
 "use client";
 
-import { useState } from "react";
 import { sendEmail } from "@/actions/sendEmail";
-import { useActiveSectionView } from "@/hooks/hooks";
+import ArrowButton from "@/components/common/ArrowButton";
+import { useWarsawTime } from "@/components/FooterCTA";
+import logo from "@/public/logo.png";
 import { motion } from "framer-motion";
-import { SectionHeading } from "./section-heading";
-import SubmitButton from "./submit-btn";
+import Image from "next/image";
+import { useState } from "react";
+import { useFormStatus } from "react-dom";
 import toast from "react-hot-toast";
+import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
+
+const socials = [
+  { href: "https://www.linkedin.com/in/soumyadip-sanyalxxiii/", label: "LinkedIn", Icon: BsLinkedin },
+  { href: "https://github.com/Nanashi-101", label: "GitHub", Icon: BsGithub },
+  { href: "https://www.instagram.com/ign._.kratos", label: "Instagram", Icon: BsInstagram },
+];
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+function SendButton() {
+  const { pending } = useFormStatus();
+  return (
+    <ArrowButton type="submit" size="lg" loading={pending} aria-label="Send message">
+      send it!
+    </ArrowButton>
+  );
+}
+
+const Field = ({
+  n,
+  label,
+  children,
+}: {
+  n: string;
+  label: string;
+  children: React.ReactNode;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 24 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.55, ease: EASE }}
+    className="border-b border-ink/15 py-8 sm:py-10"
+  >
+    <div className="flex gap-6">
+      <span className="pt-1 text-sm text-ink/30">{n}</span>
+      <div className="flex-1">
+        <label className="mb-3 block text-lg text-ink/80 sm:text-xl">{label}</label>
+        {children}
+      </div>
+    </div>
+  </motion.div>
+);
+
+const inputClass =
+  "w-full bg-transparent text-base text-ink placeholder:text-ink/30 focus:outline-none sm:text-lg";
 
 const Contact = () => {
-  const { ref } = useActiveSectionView("Contact");
-  const [name, setName] = useState("");
-  const [mail, setMail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const inputClass =
-    "w-full border-0 border-b border-ink/20 bg-transparent py-3 text-ink placeholder:text-ink/40 transition-colors focus:border-gold focus:outline-none";
+  const time = useWarsawTime();
+  const [formKey, setFormKey] = useState(0);
 
   return (
-    <motion.section
-      ref={ref}
-      id="contact"
-      className="w-full max-w-[640px] scroll-mt-28 px-4 pb-10"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <SectionHeading index="05" kicker="contact">let&apos;s connect</SectionHeading>
-
-      <p className="-mt-6 text-center text-ink/65">
-        Have a project in mind or just want to say hi? Email me at{" "}
-        <a
-          className="font-semibold text-gold underline-offset-4 hover:underline"
-          href="mailto:soumyadipsanyal2017@gmail.com"
+    <section className="w-full text-ink">
+      <div className="mx-auto max-w-[1240px] px-5 pb-24 pt-28 sm:px-8 sm:pt-36">
+        {/* heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: EASE }}
+          className="max-w-4xl text-[11vw] font-medium leading-[1.08] tracking-tight sm:text-[4.5rem]"
         >
-          soumyadipsanyal2017@gmail.com
-        </a>{" "}
-        or use the form below.
-      </p>
+          <span className="mr-4 inline-flex items-center align-middle">
+            <span className="relative inline-flex h-[10vw] w-[10vw] max-h-20 max-w-20 items-center justify-center overflow-hidden rounded-full bg-[#f0ede8] shadow-[0_0_0_2px_rgba(28,28,28,0.08)] dark:bg-[#1c1c1c] dark:shadow-[0_0_0_2px_rgba(255,255,255,0.06)]">
+              <Image src={logo} alt="Soumyadip Sanyal logo" fill sizes="96px" className="object-contain p-2" priority />
+            </span>
+          </span>
+          let&apos;s work
+          <br />
+          together<span className="text-gold">.</span>
+        </motion.h1>
 
-      <form
-        action={async (formData) => {
-          const { error } = await sendEmail(formData);
-          if (error) {
-            toast.error(typeof error === "string" ? error : "Something went wrong.");
-            return;
-          }
-          toast.success("Message sent successfully!");
-          setName("");
-          setMail("");
-          setMessage("");
-        }}
-        className="mt-10 flex flex-col gap-7"
-      >
-        <input
-          className={inputClass}
-          type="text"
-          name="senderName"
-          placeholder="Your name"
-          maxLength={50}
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          className={inputClass}
-          type="email"
-          name="senderEmail"
-          placeholder="Your email"
-          required
-          value={mail}
-          onChange={(e) => setMail(e.target.value)}
-        />
-        <textarea
-          className={`${inputClass} h-32 resize-none`}
-          name="senderMsg"
-          placeholder="Your message"
-          maxLength={5000}
-          required
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
-          <SubmitButton />
-          <button
-            type="button"
-            onClick={() => {
-              if (!name && !mail && !message) {
-                toast.error("Form is already empty!");
-              } else {
-                setName(""); setMail(""); setMessage("");
-                toast.success("Form cleared.");
+        <div className="mt-16 grid gap-16 lg:grid-cols-[1fr_320px] lg:gap-24">
+          {/* form */}
+          <form
+            key={formKey}
+            action={async (formData) => {
+              const { error } = await sendEmail(formData);
+              if (error) {
+                toast.error(typeof error === "string" ? error : "Something went wrong.");
+                return;
               }
+              toast.success("Message sent successfully!");
+              setFormKey((k) => k + 1); // reset fields
             }}
-            className="rounded-full border border-ink/20 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-gold hover:text-gold"
+            className="border-t border-ink/15"
           >
-            Clear
-          </button>
+            <Field n="01" label="What's your name?">
+              <input
+                className={inputClass}
+                type="text"
+                name="senderName"
+                placeholder="John Doe *"
+                maxLength={50}
+                required
+              />
+            </Field>
+            <Field n="02" label="What's your email?">
+              <input
+                className={inputClass}
+                type="email"
+                name="senderEmail"
+                placeholder="john@doe.com *"
+                required
+              />
+            </Field>
+            <Field n="03" label="What can I help you with?">
+              <textarea
+                className={`${inputClass} h-36 resize-none`}
+                name="senderMsg"
+                placeholder="Hello Soumyadip, I have an idea for a project…*"
+                maxLength={5000}
+                required
+              />
+            </Field>
+
+            <div className="flex justify-end pt-10">
+              <SendButton />
+            </div>
+          </form>
+
+          {/* details column */}
+          <motion.aside
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: EASE }}
+            className="flex flex-col gap-10"
+          >
+            <div>
+              <h2 className="mb-4 text-[0.65rem] uppercase tracking-[0.25em] text-ink/40">contact details</h2>
+              <a
+                href="mailto:soumyadipsanyal2017@gmail.com"
+                className="inline-block break-all text-sm text-ink/85 transition-colors hover:text-gold sm:text-base"
+              >
+                soumyadipsanyal2017@gmail.com
+              </a>
+            </div>
+
+            <div>
+              <h2 className="mb-4 text-[0.65rem] uppercase tracking-[0.25em] text-ink/40">location</h2>
+              <p className="text-sm text-ink/85 sm:text-base">Warsaw, Poland</p>
+              <p className="mt-1 text-sm text-ink/50" suppressHydrationWarning>{time || "—"} local</p>
+            </div>
+
+            <div>
+              <h2 className="mb-4 text-[0.65rem] uppercase tracking-[0.25em] text-ink/40">socials</h2>
+              <div className="flex flex-col gap-3">
+                {socials.map(({ href, label, Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex w-fit items-center gap-2 text-sm text-ink/85 transition-colors hover:text-gold sm:text-base"
+                  >
+                    <Icon size={15} />
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </motion.aside>
         </div>
-      </form>
-    </motion.section>
+
+        <p className="mt-20 border-t border-ink/10 pt-8 text-center text-[0.7rem] text-ink/35">
+          © 2026 Soumyadip Sanyal · Built with Next.js, TypeScript, Tailwind CSS, Framer Motion &amp; GSAP
+        </p>
+      </div>
+    </section>
   );
 };
 

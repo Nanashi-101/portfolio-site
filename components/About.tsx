@@ -4,7 +4,7 @@ import { useActiveSectionView } from "@/hooks/hooks";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { BsArrowRight, BsDiscord, BsInstagram, BsFacebook } from "react-icons/bs";
+import { BsArrowRight, BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import toast from "react-hot-toast";
 import aboutImg from "@/public/about-pic.jpeg";
@@ -19,9 +19,9 @@ const facts = [
 ];
 
 const socials = [
-    { href: "https://www.facebook.com/Soumyadip.2024", label: "Facebook", Icon: BsFacebook },
+    { href: "https://www.linkedin.com/in/soumyadip-sanyalxxiii/", label: "LinkedIn", Icon: BsLinkedin },
+    { href: "https://github.com/Nanashi-101", label: "GitHub", Icon: BsGithub },
     { href: "https://www.instagram.com/ign._.kratos", label: "Instagram", Icon: BsInstagram },
-    { href: "https://discord.com/channels/@me", label: "Discord", Icon: BsDiscord },
 ];
 
 const About = () => {
@@ -73,7 +73,7 @@ const About = () => {
 
                     <div className="mt-9 flex flex-wrap items-center gap-5">
                         <Link
-                            href="#contact"
+                            href="/contact"
                             className="group inline-flex items-center gap-2 rounded-full bg-neutral-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-700"
                         >
                             Get in touch
@@ -111,7 +111,7 @@ const About = () => {
                         <div className="relative aspect-[4/5] w-full overflow-hidden">
                             <Image
                                 src={aboutImg}
-                                alt="Soumyadip Sanyal"
+                                alt="Soumyadip Sanyal — full-stack developer based in Warsaw, Poland"
                                 fill
                                 sizes="300px"
                                 className="object-cover"

@@ -1,34 +1,29 @@
-import About from "@/components/About";
-import Experience from "@/components/Experience";
+import FooterCTA from "@/components/FooterCTA";
+import Description from "@/components/home/Description";
+import RecentWork from "@/components/home/RecentWork";
+import SlidingImages from "@/components/home/SlidingImages";
 import Intro from "@/components/Intro";
-import Projects from "@/components/Projects";
-import SectionDivider from "@/components/section-divider";
-import Skills from "@/components/Skills";
-import Contact from "@/components/Contact";
-import Feedback from "@/components/Feedback";
-import Footer from "@/components/footer";
 import ScrollDown from "@/components/ScrollDown";
-import Blogs from "@/components/blog";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Soumyadip Sanyal — Web Developer",
+  description:
+    "Full-stack web developer crafting clean, minimal, and high-performance web experiences with React, Next.js & TypeScript. Based in Warsaw, Poland.",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center gap-y-20 px-4 sm:gap-y-0">
-      <Intro />
-      <ScrollDown />
-      <Skills />
-      <SectionDivider />
-      <Projects />
-      <SectionDivider />
-      <Blogs />
-      <SectionDivider />
-      <Experience />
-      <SectionDivider />
-      <About />
-      <SectionDivider />
-      <Contact />
-      <SectionDivider />
-      <Feedback />
-      <Footer />
-    </main>
+    <>
+      <main className="flex flex-col items-center justify-center px-4">
+        <Intro />
+        <ScrollDown />
+        <Description />
+        <RecentWork showMore />
+      </main>
+      <SlidingImages />
+      <FooterCTA />
+    </>
   );
 }

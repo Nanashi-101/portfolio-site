@@ -14,7 +14,7 @@ const ScrollDown = () => {
       transition={{ delay: 0.6, duration: 0.6 }}
     >
       <Link
-        href="#skills"
+        href="#description"
         aria-label="Scroll to content"
         className="group flex flex-col items-center gap-1 text-ink transition-colors hover:text-gold"
       >

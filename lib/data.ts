@@ -15,6 +15,15 @@ import UniInternship from "@/public/UniInternship.png"
 import Viddly from "@/public/Viddly.png"
 import { FaLaptopCode } from "react-icons/fa6";
 
+// Route-based navigation (multi-page)
+export const navLinks = [
+  { name: "home", href: "/" },
+  { name: "work", href: "/work" },
+  { name: "about", href: "/about" },
+  { name: "contact", href: "/contact" },
+] as const;
+
+// Legacy in-page sections (kept for the active-section observers)
 export const links = [
   {
     name: "Home",

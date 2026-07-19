@@ -2,9 +2,11 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import CursorGlow from "@/components/CursorGlow";
 import CustomCursor from "@/components/CustomCursor";
 import Header from "@/components/Header";
+import Preloader from "@/components/Preloader";
 import ScrollFollower from "@/components/ScrollFollower";
 import ScrollProgress from "@/components/ScrollProgress";
 import SmoothScroll from "@/components/SmoothScroll";
+import PageTransitionProvider from "@/components/transition/PageTransition";
 import ActiveSectionProvider from "@/context/active-section-context";
 import ThemeContextProvider from "@/context/theme-context";
 import type { Metadata } from "next";
@@ -47,6 +49,9 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: ["/og.png"],
   },
+  other: {
+    "theme-color": "#d0a03a",
+  },
 };
 
 export default function RootLayout({
@@ -62,6 +67,8 @@ export default function RootLayout({
 
         <ThemeContextProvider>
           <ActiveSectionProvider>
+            <PageTransitionProvider>
+            <Preloader />
             <ScrollProgress />
             <ScrollFollower />
             <CustomCursor />
@@ -75,8 +82,43 @@ export default function RootLayout({
                 error: { iconTheme: { primary: "#e24b4a", secondary: "#fff" } },
               }}
             />
+            </PageTransitionProvider>
           </ActiveSectionProvider>
         </ThemeContextProvider>
+
+        {/* Structured data for search engines */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "@id": `${SITE_URL}/#person`,
+                  name: "Soumyadip Sanyal",
+                  url: SITE_URL,
+                  email: "mailto:soumyadipsanyal2017@gmail.com",
+                  jobTitle: "Full-Stack Web Developer",
+                  address: { "@type": "PostalAddress", addressLocality: "Warsaw", addressCountry: "PL" },
+                  sameAs: [
+                    "https://www.linkedin.com/in/soumyadip-sanyalxxiii/",
+                    "https://github.com/Nanashi-101",
+                    "https://www.instagram.com/ign._.kratos",
+                  ],
+                  knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "Tailwind CSS", "Framer Motion", "GSAP"],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${SITE_URL}/#website`,
+                  url: SITE_URL,
+                  name: "Soumyadip Sanyal — Web Developer",
+                  publisher: { "@id": `${SITE_URL}/#person` },
+                },
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   );

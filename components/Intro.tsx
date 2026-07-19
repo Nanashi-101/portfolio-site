@@ -1,12 +1,12 @@
 "use client";
 
-import { useActiveSection } from '@/context/active-section-context';
+import HeroMarquee from '@/components/home/HeroMarquee';
+import { usePageTransition } from '@/components/transition/PageTransition';
 import { useActiveSectionView } from '@/hooks/hooks';
 import profile from "@/public/hero-round.png";
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
-import { BsArrowRight, BsGithub, BsInstagram, BsLinkedin } from 'react-icons/bs';
+import { BsArrowRight, BsGithub, BsGlobeAmericas, BsInstagram, BsLinkedin } from 'react-icons/bs';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -17,7 +17,7 @@ const socials = [
 ];
 
 const Intro = () => {
-    const { setActiveSection, setTimeLastClick } = useActiveSection();
+    const { navigate } = usePageTransition();
     const { ref } = useActiveSectionView("Home");
 
     return (
@@ -55,7 +55,7 @@ const Intro = () => {
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.25, ease: EASE }}
-                    className="order-2 z-20 text-6xl font-black lowercase leading-[0.9] tracking-tighter text-ink sm:text-7xl lg:absolute lg:right-[3%] lg:top-1/2 lg:-translate-y-1/2 lg:text-8xl"
+                    className="order-2 z-20 text-6xl font-black lowercase leading-[0.9] tracking-tighter text-ink sm:text-7xl lg:absolute lg:right-[0%] lg:top-[36%] lg:-translate-y-1/2 lg:text-8xl"
                 >
                     web<br />developer<span className="text-gold">.</span>
                 </motion.h1>
@@ -74,14 +74,14 @@ const Intro = () => {
                         A full-stack developer crafting clean, minimal, and high-performance
                         web experiences with React, Next.js &amp; TypeScript.
                     </p>
-                    <Link
-                        href="#about"
-                        onClick={() => { setActiveSection("About"); setTimeLastClick(Date.now()); }}
+                    <a
+                        href="/about"
+                        onClick={(e) => { e.preventDefault(); navigate("/about", "about"); }}
                         className="group mt-4 inline-flex items-center gap-2 text-sm font-bold text-ink transition-colors hover:text-gold"
                     >
                         Read more
                         <BsArrowRight className="transition-transform group-hover:translate-x-1" />
-                    </Link>
+                    </a>
                 </motion.div>
 
                 {/* SOCIALS — bottom-left on desktop */}
@@ -105,15 +105,40 @@ const Intro = () => {
                     ))}
                 </motion.div>
 
-                {/* LOCATION — bottom-right on desktop */}
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                {/* LOCATION — big dark pill hugging the right edge of the page */}
+                <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.6, ease: EASE }}
-                    className="order-5 z-20 text-xs font-semibold uppercase tracking-[0.25em] text-ink/50 lg:absolute lg:bottom-[7%] lg:right-[3%]"
+                    className="order-5 z-30 lg:absolute lg:bottom-[40%] lg:right-[-3rem]"
                 >
-                    Warsaw, Poland
-                </motion.p>
+                    <div className="flex items-center gap-5 rounded-full bg-ink py-4 pl-6 pr-8 text-left text-surface shadow-lg lg:rounded-r-none lg:pr-12">
+                        <motion.span
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                            className="grid h-11 w-11 place-items-center"
+                        >
+                            <BsGlobeAmericas size={30} />
+                        </motion.span>
+                        <span className="text-[0.8rem] font-semibold uppercase leading-relaxed tracking-[0.18em]">
+                            located in<br />Warsaw, Poland
+                        </span>
+                    </div>
+                </motion.div>
+
+                {/* NAME MARQUEE — sits in the mid-hero band (the red-circled zone).
+                    z-[5] keeps it behind the photo (z-20) and headline (z-20).
+                    The calc on left breaks out of the max-w-[1240px] parent:
+                    (100vw - 100%) / 2 = the auto-margin on each side of the section. */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 0.7, ease: EASE }}
+                    className="order-6 z-[5] -mx-4 w-screen overflow-hidden lg:absolute lg:bottom-[22%] lg:mx-0"
+                    style={{ left: 'calc(-1 * ((100vw - 100%) / 2))', width: '100vw' }}
+                >
+                    <HeroMarquee textClass="text-[16vw] lg:text-[12vw]" />
+                </motion.div>
             </div>
         </section>
     );

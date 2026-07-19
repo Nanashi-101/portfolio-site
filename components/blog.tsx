@@ -50,6 +50,7 @@ const Blogs = () => {
             src={blogPic}
             alt="Soumyadip's blog"
             className="h-auto w-full object-cover transition-all duration-700 ease-out lg:grayscale lg:group-hover:scale-[1.03] lg:group-hover:grayscale-0"
+          sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </motion.div>
       </div>
