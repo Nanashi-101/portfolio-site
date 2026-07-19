@@ -45,6 +45,5 @@ export default function Magnetic({
     }, [strength]);
 
     if (!isValidElement(children)) return children;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return cloneElement(children as React.ReactElement<any>, { ref });
 }
