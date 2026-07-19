@@ -60,12 +60,12 @@ const Intro = () => {
                     web<br />developer<span className="text-gold">.</span>
                 </motion.h1>
 
-                {/* INTRO PARAGRAPH — top-left on desktop */}
+                {/* INTRO PARAGRAPH & LOCATION — top-left on desktop */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4, ease: EASE }}
-                    className="order-3 z-20 max-w-md lg:absolute lg:left-[3%] lg:top-[18%] lg:max-w-[17rem]"
+                    className="order-3 z-20 flex flex-col items-center text-center lg:absolute lg:left-[3%] lg:top-[16%] lg:max-w-[18rem] lg:items-start lg:text-left"
                 >
                     <p className="text-sm font-bold uppercase tracking-[0.3em] text-ink">
                         Soumyadip Sanyal
@@ -82,6 +82,20 @@ const Intro = () => {
                         Read more
                         <BsArrowRight className="transition-transform group-hover:translate-x-1" />
                     </a>
+
+                    {/* LOCATION PILL — aligned cleanly with intro */}
+                    <div className="mt-8 flex items-center gap-4 rounded-full bg-ink py-3.5 px-6 text-left text-surface shadow-lg">
+                        <motion.span
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                            className="grid h-9 w-9 shrink-0 place-items-center"
+                        >
+                            <BsGlobeAmericas size={24} />
+                        </motion.span>
+                        <span className="text-[0.75rem] font-semibold uppercase leading-relaxed tracking-[0.16em]">
+                            located in<br />Warsaw, Poland
+                        </span>
+                    </div>
                 </motion.div>
 
                 {/* SOCIALS — bottom-left on desktop */}
@@ -103,27 +117,6 @@ const Intro = () => {
                             <Icon size={20} />
                         </a>
                     ))}
-                </motion.div>
-
-                {/* LOCATION — big dark pill hugging the right edge of the page */}
-                <motion.div
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6, ease: EASE }}
-                    className="order-5 z-30 lg:absolute lg:bottom-[40%] lg:right-[-3rem]"
-                >
-                    <div className="flex items-center gap-5 rounded-full bg-ink py-4 pl-6 pr-8 text-left text-surface shadow-lg lg:rounded-r-none lg:pr-12">
-                        <motion.span
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                            className="grid h-11 w-11 place-items-center"
-                        >
-                            <BsGlobeAmericas size={30} />
-                        </motion.span>
-                        <span className="text-[0.8rem] font-semibold uppercase leading-relaxed tracking-[0.18em]">
-                            located in<br />Warsaw, Poland
-                        </span>
-                    </div>
                 </motion.div>
 
                 {/* NAME MARQUEE — sits in the mid-hero band (the red-circled zone).
