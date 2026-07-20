@@ -22,7 +22,7 @@ const wrap = (min: number, max: number, v: number) => {
  * scrolling down pushes the text left, scrolling up pushes it right.
  */
 export default function HeroMarquee({
-    text = "soumyadip sanyal",
+    text = "Soumyadip Sanyal",
     baseVelocity = -1.6,
     textClass = "text-[15vw] sm:text-[11vw]",
 }: {
