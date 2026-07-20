@@ -113,6 +113,7 @@ const About = () => {
                                 src={aboutImg}
                                 alt="Soumyadip Sanyal — full-stack developer based in Warsaw, Poland"
                                 fill
+                                quality={95}
                                 sizes="300px"
                                 className="object-cover"
                             />

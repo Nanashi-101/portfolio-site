@@ -1,7 +1,10 @@
 import About from "@/components/About";
-import Experience from "@/components/Experience";
-import Feedback from "@/components/Feedback";
 import FooterCTA from "@/components/FooterCTA";
+import dynamic from "next/dynamic";
+
+// Below-the-fold, JS-heavy sections — split into their own chunks
+const Experience = dynamic(() => import("@/components/Experience"));
+const Feedback = dynamic(() => import("@/components/Feedback"));
 import SectionDivider from "@/components/section-divider";
 import Skills from "@/components/Skills";
 import type { Metadata } from "next";

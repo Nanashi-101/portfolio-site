@@ -150,24 +150,7 @@ export const projectsData = [
     tags: ["React", "TypeScript", "Next.js", "Tailwind"],
     imageUrl: nexcapstudio,
     projectUrl: "https://photography-site-gilt.vercel.app",
-  },
-  {
-    title: "Image Gallery",
-    description:
-      "This is very basic Image Gallery project that I made to learn how to use tailwind to make creative designs. I also used framer motion to add some animations.",
-    tags: ["React", "Tailwind", "Framer"],
-    imageUrl: ImageGallery,
-    projectUrl: "https://github.com/Nanashi-101/image_gallery.git",
-  },
-  {
-    title: "Will be there",
-    description:
-      "This is a hackathon project that I made with my friends. It's a RSVP website that helps people to host and join events. I worked as the lead frontend dev in this project. ",
-    tags: ["React", "Tailwind", "Framer"],
-    imageUrl: WillBeThere,
-    projectUrl:
-      "https://github.com/Nanashi-101/AritDeveloperHackathon-group19-starred",
-  },
+  }
 ] as const;
 
 export const skillsData = [

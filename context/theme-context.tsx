@@ -1,64 +1,92 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from 'react';
+/**
+ * Theme context for managing light/dark mode across the application
+ */
 
-type ThemeType = 'light' | 'dark';
+import React, { useContext, useEffect, useState } from "react";
+import type { ThemeContextType, ThemeType } from "@/lib/types";
 
-type ThemeContextChildrenType = {
-    children: React.ReactNode;
-};
-
-type ThemeContextType = {
-    theme: ThemeType;
-    toggleTheme: () => void;
+interface ThemeContextProviderProps {
+  children: React.ReactNode;
 }
 
 export const ThemeContext = React.createContext<ThemeContextType | null>(null);
 
-const ThemeContextProvider = ({children}: ThemeContextChildrenType) => {
-    const [theme, setTheme] = useState<ThemeType>('light');
-    const toggleTheme = () => {
-        if (theme === 'light') {
-            setTheme('dark')
-            window.localStorage.setItem('theme', 'dark')
-            document.documentElement.classList.add('dark')
+const ThemeContextProvider = ({ children }: ThemeContextProviderProps) => {
+  const [theme, setTheme] = useState<ThemeType>("light");
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === "light" ? "dark" : "light";
+
+      // Update localStorage
+      try {
+        window.localStorage.setItem("theme", newTheme);
+      } catch (error) {
+        console.error("Failed to save theme preference:", error);
+      }
+
+      // Update DOM
+      if (newTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+
+      return newTheme;
+    });
+  };
+
+  useEffect(() => {
+    try {
+      // Check localStorage first
+      const savedTheme = localStorage.getItem("theme") as ThemeType | null;
+
+      if (savedTheme) {
+        setTheme(savedTheme);
+        if (savedTheme === "dark") {
+          document.documentElement.classList.add("dark");
         } else {
-            setTheme('light')
-            window.localStorage.setItem('theme', 'light')
-            document.documentElement.classList.remove('dark')
+          document.documentElement.classList.remove("dark");
         }
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        // Fallback to system preference
+        setTheme("dark");
+        document.documentElement.classList.add("dark");
+      }
+    } catch (error) {
+      console.error("Failed to load theme preference:", error);
     }
+  }, []);
 
-    useEffect(() => {
-        const userTheme = localStorage.getItem('theme') as ThemeType | null;
-        if (userTheme) {
-            setTheme(userTheme);
-            userTheme === 'dark' && document.documentElement.classList.add('dark');
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            setTheme('dark');
-            document.documentElement.classList.add('dark');
-        }
+  // Note: the provider must always wrap children — returning them bare on the
+  // server (pre-mount) crashes prerendering for every consumer of the context.
+  return (
+    <ThemeContext.Provider
+      value={{
+        theme,
+        toggleTheme,
+      }}
+    >
+      {children}
+    </ThemeContext.Provider>
+  );
+};
 
-        // userTheme ? setTheme(userTheme) : (window.matchMedia("(prefers-color-scheme: dark)").matches)? setTheme('dark') : setTheme('light');
-    }, [])
+/**
+ * Hook to use theme context
+ * @returns Theme context with current theme and toggle function
+ * @throws Error if used outside ThemeContextProvider
+ */
+export const useThemeContext = (): ThemeContextType => {
+  const context = useContext(ThemeContext);
 
-    return (
-        <ThemeContext.Provider value={{
-            theme,
-            toggleTheme,
-        }}>
-            {children}
-        </ThemeContext.Provider>
-    )
-}
+  if (context === null) {
+    throw new Error("useThemeContext must be used within ThemeContextProvider");
+  }
 
-export const useThemeContext = () => { 
-    const context = useContext(ThemeContext)
-    if (context === null) {
-        throw new Error('useActiveSection must be used within an ActiveSectionProvider')
-    }
+  return context;
+};
 
-    return context;
-}
-
-export default ThemeContextProvider
+export default ThemeContextProvider;

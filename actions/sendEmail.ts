@@ -1,54 +1,91 @@
 "use server";
 
-import { EmailTemplateMe, EmailTemplateUser } from '@/emails/EmailTemplates';
-import { getErrorMessage, validateString } from '@/lib/utils';
-import React from 'react';
-import { Resend } from 'resend';
+/**
+ * Server action for handling email submissions from the contact form
+ */
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { EmailTemplateMe, EmailTemplateUser } from "@/emails/EmailTemplates";
+import { getErrorMessage } from "@/lib/utils";
+import { validateContactForm } from "@/lib/validation";
+import { SITE_CONFIG, EMAIL_CONFIG } from "@/lib/constants";
+import type { EmailResult } from "@/lib/types";
+import React from "react";
+import { Resend } from "resend";
 
-const MY_EMAIL = "soumyadipsanyal2017@gmail.com";
-const FROM = process.env.RESEND_FROM || "Soumyadip Portfolio <onboarding@resend.dev>";
+// Validate environment variables
+const apiKey = EMAIL_CONFIG.API_KEY;
+if (!apiKey) {
+  throw new Error("RESEND_API_KEY environment variable is not set");
+}
 
-export const sendEmail = async (formData: FormData) => {
-    const message = formData.get('senderMsg');
-    const senderEmail = formData.get('senderEmail');
-    const name = formData.get('senderName');
+const resend = new Resend(apiKey);
 
-    if (!validateString(message, 5000) || !validateString(senderEmail, 500) || !validateString(name, 100)) {
-        return { error: "Invalid form data — please check your inputs." };
+/**
+ * Sends email from contact form to site owner and auto-responds to sender
+ * @param formData - Form data containing sender info and message
+ * @returns Result object with success or error
+ */
+export const sendEmail = async (formData: FormData): Promise<EmailResult> => {
+  try {
+    const message = formData.get("senderMsg");
+    const senderEmail = formData.get("senderEmail");
+    const senderName = formData.get("senderName");
+
+    // Validate form data
+    const validation = validateContactForm(
+      String(senderName || ""),
+      String(senderEmail || ""),
+      String(message || "")
+    );
+
+    if (!validation.valid) {
+      const errorMessages = Object.values(validation.errors).join(" | ");
+      return { error: errorMessages };
     }
 
-    // 1) Notify me with the full details (this must succeed)
-    const { error } = await resend.emails.send({
-        from: FROM,
-        to: MY_EMAIL,
-        reply_to: senderEmail as string,
-        subject: `New portfolio message from ${name as string}`,
-        react: React.createElement(EmailTemplateMe, {
-            name: name as string,
-            senderMail: senderEmail as string,
-            message: message as string,
-        }),
+    // Send notification email to site owner
+    const { error: ownerEmailError } = await resend.emails.send({
+      from: EMAIL_CONFIG.FROM,
+      to: SITE_CONFIG.EMAIL,
+      reply_to: String(senderEmail),
+      subject: `New portfolio message from ${senderName}`,
+      react: React.createElement(EmailTemplateMe, {
+        name: String(senderName),
+        senderMail: String(senderEmail),
+        message: String(message),
+      }),
     });
-    if (error) return { error: getErrorMessage(error) };
 
-    // 2) Auto-response to the sender (best-effort: delivering to arbitrary
-    //    addresses requires a verified domain in Resend, so don't fail on this)
+    if (ownerEmailError) {
+      console.error("Failed to send email to owner:", ownerEmailError);
+      return { error: getErrorMessage(ownerEmailError) };
+    }
+
+    // Send auto-response to sender (best-effort)
     try {
-        await resend.emails.send({
-            from: FROM,
-            to: senderEmail as string,
-            reply_to: MY_EMAIL,
-            subject: "Thanks for reaching out — Soumyadip Sanyal",
-            react: React.createElement(EmailTemplateUser, {
-                name: name as string,
-                message: message as string,
-            }),
-        });
-    } catch (e) {
-        console.warn("Auto-response not sent:", getErrorMessage(e));
+      await resend.emails.send({
+        from: EMAIL_CONFIG.FROM,
+        to: String(senderEmail),
+        reply_to: SITE_CONFIG.EMAIL,
+        subject: `Thanks for reaching out — ${SITE_CONFIG.NAME}`,
+        react: React.createElement(EmailTemplateUser, {
+          name: String(senderName),
+          message: String(message),
+        }),
+      });
+    } catch (autoResponseError) {
+      // Don't fail if auto-response fails, but log it
+      console.warn(
+        "Auto-response email failed (non-critical):",
+        getErrorMessage(autoResponseError)
+      );
     }
 
     return { data: true };
+  } catch (error) {
+    console.error("Email sending error:", error);
+    return {
+      error: "Failed to send email. Please try again later.",
+    };
+  }
 };

@@ -3,7 +3,7 @@
 import HeroMarquee from '@/components/home/HeroMarquee';
 import { usePageTransition } from '@/components/transition/PageTransition';
 import { useActiveSectionView } from '@/hooks/hooks';
-import profile from "@/public/hero-round.png";
+import profile from "@/public/hero-round.webp";
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { BsArrowRight, BsGithub, BsGlobeAmericas, BsInstagram, BsLinkedin } from 'react-icons/bs';

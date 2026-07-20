@@ -44,7 +44,8 @@ export default function SlidingImages() {
                                 src={project.imageUrl}
                                 alt={project.title}
                                 fill
-                                sizes="25vw"
+                                quality={92}
+                                sizes="(max-width: 768px) 45vw, 25vw"
                                 className="object-cover object-top shadow-lg"
                             />
                         </div>
@@ -64,7 +65,8 @@ export default function SlidingImages() {
                                 src={project.imageUrl}
                                 alt={project.title}
                                 fill
-                                sizes="25vw"
+                                quality={92}
+                                sizes="(max-width: 768px) 45vw, 25vw"
                                 className="object-cover object-top shadow-lg"
                             />
                         </div>

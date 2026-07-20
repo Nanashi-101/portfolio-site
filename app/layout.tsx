@@ -1,9 +1,7 @@
 import AnimatedBackground from "@/components/AnimatedBackground";
-import CursorGlow from "@/components/CursorGlow";
-import CustomCursor from "@/components/CustomCursor";
+import DeferredFx from "@/components/DeferredFx";
 import Header from "@/components/Header";
 import Preloader from "@/components/Preloader";
-import ScrollFollower from "@/components/ScrollFollower";
 import ScrollProgress from "@/components/ScrollProgress";
 import SmoothScroll from "@/components/SmoothScroll";
 import PageTransitionProvider from "@/components/transition/PageTransition";
@@ -63,15 +61,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${outfit.className} relative pt-[4.5rem] text-ink transition-colors duration-500 overflow-x-hidden`}>
         <AnimatedBackground />
-        <CursorGlow />
+        <DeferredFx />
 
         <ThemeContextProvider>
           <ActiveSectionProvider>
             <PageTransitionProvider>
             <Preloader />
             <ScrollProgress />
-            <ScrollFollower />
-            <CustomCursor />
             <Header />
             <SmoothScroll>{children}</SmoothScroll>
             <Toaster

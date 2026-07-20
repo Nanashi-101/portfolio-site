@@ -60,6 +60,7 @@ const Card = ({
                             src={project.imageUrl}
                             alt={project.title}
                             fill
+                            quality={95}
                             sizes="600px"
                             className="object-cover object-top"
                         />
@@ -158,7 +159,7 @@ const Projects = () => {
                         className="overflow-hidden rounded-2xl border border-ink/10 bg-white/55 dark:bg-white/[0.04]"
                     >
                         <div className="relative h-48 w-full overflow-hidden">
-                            <Image src={project.imageUrl} alt={project.title} fill sizes="100vw" className="object-cover" />
+                            <Image src={project.imageUrl} alt={project.title} fill quality={95} sizes="(max-width: 1024px) calc(100vw - 2rem), 600px" className="object-cover" />
                         </div>
                         <div className="p-6">
                             <div className="mb-2 flex items-center gap-3">

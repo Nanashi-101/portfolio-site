@@ -3,7 +3,7 @@
 import React, { ReactNode } from 'react'
 import { createContext, useContext, useState } from 'react'
 import { links } from '@/lib/data'
-import type { SectionContextType } from '@/lib/types'
+import type { SectionName } from '@/lib/types'
 
 
 
@@ -12,8 +12,8 @@ type ActiveSectionContextProviderProps = {
 }
 
 type ActiveSectionContextType = {
-    activeSection: SectionContextType;
-    setActiveSection: React.Dispatch<React.SetStateAction<SectionContextType>>;//This is a rather curated type provided by React as the type of the function returned by useState
+    activeSection: SectionName;
+    setActiveSection: React.Dispatch<React.SetStateAction<SectionName>>;//This is a rather curated type provided by React as the type of the function returned by useState
     timeLastClick: number;
     setTimeLastClick: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -21,7 +21,7 @@ type ActiveSectionContextType = {
 export const ActiveSectionContext = createContext<ActiveSectionContextType | null>(null)
 
 const ActiveSectionProvider = ({ children }: ActiveSectionContextProviderProps) => {
-    const [activeSection, setActiveSection] = useState<SectionContextType>("Home")
+    const [activeSection, setActiveSection] = useState<SectionName>("Home")
     const [timeLastClick, setTimeLastClick] = useState<number>(0)// We need to store the time of the last click to prevent the active section from changing when the user clicks on a link to navigate to a section.
 
     return (
